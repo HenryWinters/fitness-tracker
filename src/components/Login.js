@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import loginService from '../services/login'
+import { useNavigate } from 'react-router-dom'
 
 const Login = ({ setUser, setNotification }) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const navigate = useNavigate()
 
     const handleLogin = async (event) => {
         event.preventDefault() 
@@ -23,6 +25,7 @@ const Login = ({ setUser, setNotification }) => {
             setTimeout(() => {
                 setNotification({ message: null, type: null })
             }, 5000)
+            navigate('/home')
         } catch (exception) {
             setNotification({ message: exception.response.data.error, type: 'error' })
             setTimeout(() => {
@@ -30,7 +33,6 @@ const Login = ({ setUser, setNotification }) => {
             }, 5000)
         }
     }
-
 
     return (
         <div>

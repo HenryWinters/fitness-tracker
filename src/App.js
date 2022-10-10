@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react'
+import { Routes, Route, Link } from 'react-router-dom'
 import './App.css';
 import workoutService from './services/workouts'
 import Login from './components/Login'
 import TopNav from './components/TopNav'
+import BottomNav from './components/BottomNav'
+import Home from './components/Home'
+import Workouts from './components/Workouts'
+import Profile from './components/Profile'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -22,12 +27,19 @@ function App() {
       <div className="App">
         <Login setUser={setUser} setNotification={setNotification} /> 
       </div>
-    );
-  } else return (
-    <div className="App">
-      <TopNav user={user} setNotification={setNotification} />
-    </div>
-  );
+    )
+  } else 
+    return (
+      <div>
+        <TopNav user={user} setNotification={setNotification} /> 
+        <Routes>
+          <Route path='home' element={<Home />} /> 
+          <Route path='workouts' element={<Workouts />} /> 
+          <Route path='profile' element={<Profile />} /> 
+        </Routes>
+        <BottomNav /> 
+      </div> 
+    )
 }
 
 export default App;

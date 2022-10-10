@@ -1,4 +1,8 @@
+import '../index.css'
+import { useLocation } from 'react-router-dom'
+
 const TopNav = ({user, setNotification}) => {
+    const location = useLocation()
 
     const handleLogOut = (event) => {
         event.preventDefault()
@@ -10,10 +14,19 @@ const TopNav = ({user, setNotification}) => {
         }, 5000)
     }
 
+    const addWorkout = (event) => {
+        event.preventDefault()
+        console.log('Add Workout')
+    }
+
+    const editPathName = (string) => {
+        return string.charAt(1).toUpperCase() + string.slice(2)
+    }
+
     return (
-        <div>
-            <p>Add Workout</p>
-            <h1>Lift Log</h1>
+        <div id='top-nav-bar'>
+            <button onClick={addWorkout}>Add Workout</button> 
+            <h1>{editPathName(location.pathname)}</h1>
             <button onClick={handleLogOut}>Log Out</button> 
         </div> 
     )
