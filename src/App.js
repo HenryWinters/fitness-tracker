@@ -8,6 +8,7 @@ import BottomNav from './components/BottomNav'
 import Home from './components/Home'
 import Workouts from './components/Workouts'
 import Profile from './components/Profile'
+import WorkoutForm from './components/WorkoutForm'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -36,6 +37,7 @@ function App() {
           <Route path='home' element={<Home />} /> 
           <Route path='workouts' element={<Workouts />} /> 
           <Route path='profile' element={<Profile />} /> 
+          <Route path='workout' element={<WorkoutForm />} />
         </Routes>
         <BottomNav /> 
       </div> 

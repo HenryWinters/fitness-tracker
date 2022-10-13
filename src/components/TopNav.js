@@ -1,8 +1,9 @@
 import '../index.css'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const TopNav = ({user, setNotification}) => {
     const location = useLocation()
+    const navigate = useNavigate()
 
     const handleLogOut = (event) => {
         event.preventDefault()
@@ -16,7 +17,7 @@ const TopNav = ({user, setNotification}) => {
 
     const addWorkout = (event) => {
         event.preventDefault()
-        console.log('Add Workout')
+        navigate('/workout')
     }
 
     const editPathName = (string) => {
