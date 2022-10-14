@@ -44,29 +44,6 @@ code {
   margin-top: 10vh; 
 }
 
-.workout-table { 
-  width: 100%; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-}
-
-.workout-table > table {
-  border: 2px solid black; 
-  width: 800px; 
-  height: 200px; 
-}
-
-.workout-table > table > thead > tr > th { 
-  border-bottom: 1px solid black;
-}
-
-.workout-table > table > tbody > tr > td {
-  text-align: center; 
-}
-
-/* */ 
-
 .workout-table-container { 
   width: 100%; 
   display: flex; 
@@ -74,21 +51,32 @@ code {
   align-items: center; 
 }
 
-.workout-table-2 {
+.workout-table {
   border: 2px solid black; 
   width: 800px; 
-  height: 200px; 
 }
 
 .workout-table-head {
   display: flex; 
-  justify-content: space-around; 
-  align-items: center; 
+  text-align: center; 
   border-bottom: 1px solid black;
+}
+
+.workout-table-head > h3 {
+  width: 16.66%; 
 }
 
 .exercise-entry {
   display: flex; 
-  justify-content: space-around;
+  text-align: center; 
+  justify-content: center; 
   align-items: center; 
+}
+
+.exercise-entry > p { 
+  width: 16.66%; 
+}
+
+.workout-actions {
+  width: 16.66%; 
 }
