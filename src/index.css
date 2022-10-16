@@ -40,10 +40,6 @@ code {
   box-shadow: var(--box-shadow-color) 0px 1px 4px;
 }
 
-.workout-form {
-  margin-top: 10vh; 
-}
-
 .workout-table-container { 
   width: 100%; 
   display: flex; 
@@ -63,7 +59,7 @@ code {
 }
 
 .workout-table-head > h3 {
-  width: 16.66%; 
+  width: 14.28%; 
 }
 
 .exercise-entry {
@@ -74,9 +70,13 @@ code {
 }
 
 .exercise-entry > p { 
-  width: 16.66%; 
+  width: 14.28%; 
 }
 
 .workout-actions {
-  width: 16.66%; 
+  width: 14.28%; 
+}
+
+.workout-information { 
+  margin-top: 15vh; 
 }

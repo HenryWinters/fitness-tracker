@@ -2,21 +2,42 @@ import { useState } from 'react'
 
 const WorkoutForm = () => {
 
+    const timeOfDay = () => {
+        let result = ''
+        let today = new Date();
+        let currentHour = today.getHours();
+        if (currentHour < 12) {
+            result = 'Morning'
+        } else if (currentHour < 18) {
+            result = 'Afternoon'
+        } else {
+            result = 'Evening'
+        }
+        return result
+    }  
+    
+    const defaultWorkoutTitle = timeOfDay() + ' Workout'
+
     const [exercise, setExercise] = useState('')
     const [set, setSet] = useState('')
     const [reps, setReps] = useState('')
     const [weight, setWeight] = useState('')
+    const [exerciseNote, setExerciseNote] = useState('')
     const [workout, setWorkout] = useState([])
     const [setID, setSetID] = useState(0)
+    const [workoutTitle, setWorkoutTitle] = useState(defaultWorkoutTitle)
+    const [workoutNotes, setWorkoutNotes] = useState('')
 
     const addExerciseToWorkout = (event) => {
         event.preventDefault()
-        const newExercise = { setID, exercise, set, reps, weight }
+        const newExercise = { setID, exercise, set, reps, weight, exerciseNote }
         setWorkout([...workout, newExercise])
         setSetID(setID + 1)
         setExercise('')
         setReps('')
         setWeight('')
+        setSet('')
+        setExerciseNote('')
     }
 
     const removeExerciseFromWorkout = (ID) => {
@@ -25,53 +46,99 @@ const WorkoutForm = () => {
         setWorkout(workoutListWithDeletion)
     }
 
+    const clearExercisesFromWorkout = () => {
+        if (window.confirm('Clear all exercise?')) {
+            setWorkout([])
+        }
+    }
+
     return (
-        <div> 
-            <div className='workout-form'>
-                <form onSubmit={addExerciseToWorkout}>
+        <div>
+            <div className='workout-information'>
+                <h1>Workout Information</h1> 
+                <div className='workout-title'>
                     <div>
-                        Exercise:
-                        <input 
+                        Title: 
+                        <input
                             type='text'
-                            value={exercise}
-                            name='Exercise'
-                            onChange={({ target }) => setExercise(target.value)}
-                            placeholder='title of exercise'
+                            value={workoutTitle}
+                            name='Title'
+                            onChange={({ target }) => setWorkoutTitle(target.value)}
+                            placeholder='Title of workout'
                         />
                     </div>
+                </div> 
+                <div className='workout-notes'>
                     <div>
-                        Set: 
-                        <input 
-                            type='text'
-                            value={set}
-                            name='Sets'
-                            onChange={({ target }) => setSet(target.value)}
-                            placeholder='set number'
+                        Notes: 
+                        <input
+                            type='textarea'
+                            value={workoutNotes}
+                            name='Workout Notes'
+                            onChange={({ target }) => setWorkoutNotes(target.value)}
+                            placeholder='How did it go? Write your notes here'
                         />
-                    </div>
-                    <div>
-                        Reps: 
-                        <input 
-                            type='text'
-                            value={reps}
-                            name='Reps'
-                            onChange={({ target }) => setReps(target.value)}
-                            placeholder='number of reps'
-                        />
-                    </div>
-                    <div>
-                        Weight (lbs): 
-                        <input 
-                            type='text'
-                            value={weight}
-                            name='Weight'
-                            onChange={({ target }) => setWeight(target.value)}
-                            placeholder='Weight (lbs)'
-                        />
-                    </div>
-                    <button type='submit'>Add to workout</button> 
-                </form> 
-            </div>
+                    </div> 
+                </div>
+            </div> 
+            <div> 
+                <h1>Add Exercises</h1> 
+                <div className='workout-form'>
+                    <form onSubmit={addExerciseToWorkout}>
+                        <div>
+                            Exercise:
+                            <input 
+                                type='text'
+                                value={exercise}
+                                name='Exercise'
+                                onChange={({ target }) => setExercise(target.value)}
+                                placeholder='title of exercise'
+                            />
+                        </div>
+                        <div>
+                            Set: 
+                            <input 
+                                type='text'
+                                value={set}
+                                name='Sets'
+                                onChange={({ target }) => setSet(target.value)}
+                                placeholder='set number'
+                            />
+                        </div>
+                        <div>
+                            Reps: 
+                            <input 
+                                type='text'
+                                value={reps}
+                                name='Reps'
+                                onChange={({ target }) => setReps(target.value)}
+                                placeholder='number of reps'
+                            />
+                        </div>
+                        <div>
+                            Weight (lbs): 
+                            <input 
+                                type='text'
+                                value={weight}
+                                name='Weight'
+                                onChange={({ target }) => setWeight(target.value)}
+                                placeholder='Weight (lbs)'
+                            />
+                        </div>
+                        <div>
+                            Notes: 
+                            <input 
+                                type='text'
+                                value={exerciseNote}
+                                name='Exercise Note'
+                                onChange={({ target }) => setExerciseNote(target.value)}
+                                placeholder='Notes about exercise'
+                            />
+                        </div>
+                        <button type='submit'>Add to workout</button> 
+                    </form> 
+                </div>
+            </div> 
             <div className='workout-table-container'>
                 <div className='workout-table'>  
                     <div className='workout-table-head'>
@@ -80,6 +147,7 @@ const WorkoutForm = () => {
                         <h3>Set</h3>
                         <h3>Reps</h3> 
                         <h3>Weight</h3> 
+                        <h3>Notes</h3>
                         <h3>Actions</h3>
                     </div> 
                     <div className='workout-table-body'> 
@@ -91,6 +159,7 @@ const WorkoutForm = () => {
                                     <p>{val.set}</p>
                                     <p>{val.reps}</p>
                                     <p>{val.weight}</p> 
+                                    <p>{val.exerciseNote}</p>
                                     <div className='workout-actions'>
                                         <button onClick={() => removeExerciseFromWorkout(val.setID)}>X</button>  
                                     </div> 
@@ -101,6 +170,7 @@ const WorkoutForm = () => {
                 </div> 
             </div> 
             <div> 
+                <button onClick={() => clearExercisesFromWorkout()}>Clear</button>
                 <button type='submit'>Save</button> 
             </div> 
         </div> 
