@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import workoutService from '../services/workouts'
+import { useNavigate } from 'react-router-dom'
 
 const WorkoutForm = () => {
+    const navigate = useNavigate()
 
     const timeOfDay = () => {
         let result = ''
@@ -26,7 +29,7 @@ const WorkoutForm = () => {
     const [workout, setWorkout] = useState([])
     const [setID, setSetID] = useState(0)
     const [workoutTitle, setWorkoutTitle] = useState(defaultWorkoutTitle)
-    const [workoutNotes, setWorkoutNotes] = useState('')
+    const [workoutNote, setWorkoutNote] = useState('')
 
     const addExerciseToWorkout = (event) => {
         event.preventDefault()
@@ -52,6 +55,20 @@ const WorkoutForm = () => {
         }
     }
 
+    const saveExercise = async (event) => {
+        event.preventDefault()
+        try {
+            const workoutToSave = { workoutTitle, workoutNote, workout }
+            await workoutService.addWorkout(workoutToSave) 
+            setWorkoutTitle(defaultWorkoutTitle)
+            setWorkoutNote('')
+            setWorkout([])
+            navigate('/home')
+        } catch (exception) {
+            console.log('error')
+        }
+    }
+
     return (
         <div>
             <div className='workout-information'>
@@ -73,9 +90,9 @@ const WorkoutForm = () => {
                         Notes: 
                         <input
                             type='textarea'
-                            value={workoutNotes}
+                            value={workoutNote}
                             name='Workout Notes'
-                            onChange={({ target }) => setWorkoutNotes(target.value)}
+                            onChange={({ target }) => setWorkoutNote(target.value)}
                             placeholder='How did it go? Write your notes here'
                         />
                     </div> 
@@ -171,7 +188,7 @@ const WorkoutForm = () => {
             </div> 
             <div> 
                 <button onClick={() => clearExercisesFromWorkout()}>Clear</button>
-                <button type='submit'>Save</button> 
+                <button type='submit' onClick={saveExercise}>Save</button> 
             </div> 
         </div> 
     )

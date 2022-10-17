@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import loginService from '../services/login'
 import { useNavigate } from 'react-router-dom'
+import loginService from '../services/login'
+import workoutService from '../services/workouts'
 
 const Login = ({ setUser, setNotification }) => {
     const [username, setUsername] = useState('')
@@ -17,7 +18,7 @@ const Login = ({ setUser, setNotification }) => {
             window.localStorage.setItem(
                 'loggedFitnessAppUser', JSON.stringify(user)
             )
-
+            workoutService.setToken(user.token)    
             setUser(user)
             setUsername('')
             setPassword('')
