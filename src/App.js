@@ -12,6 +12,7 @@ import WorkoutForm from './components/WorkoutForm'
 
 function App() {
   const [user, setUser] = useState(null)
+  const [workouts, setWorkouts] = useState([])
   const [notification, setNotification] = useState('')
 
   useEffect(() => {
@@ -36,7 +37,7 @@ function App() {
         <Routes>
           <Route path='home' element={<Home />} /> 
           <Route path='workouts' element={<Workouts />} /> 
-          <Route path='profile' element={<Profile />} /> 
+          <Route path='profile' element={<Profile workouts={workouts} setWorkouts={setWorkouts} />} /> 
           <Route path='workout' element={<WorkoutForm />} />
         </Routes>
         <BottomNav /> 

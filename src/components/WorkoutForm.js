@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router-dom'
 const WorkoutForm = () => {
     const navigate = useNavigate()
 
-    const timeOfDay = () => {
+    const today = new Date()
+
+    const timeOfDay = (today) => {
         let result = ''
-        let today = new Date();
-        let currentHour = today.getHours();
+        let currentHour = today.getHours()
         if (currentHour < 12) {
             result = 'Morning'
         } else if (currentHour < 18) {
@@ -19,7 +20,7 @@ const WorkoutForm = () => {
         return result
     }  
     
-    const defaultWorkoutTitle = timeOfDay() + ' Workout'
+    const defaultWorkoutTitle = timeOfDay(today) + ' Workout'
 
     const [exercise, setExercise] = useState('')
     const [set, setSet] = useState('')
@@ -30,6 +31,7 @@ const WorkoutForm = () => {
     const [setID, setSetID] = useState(0)
     const [workoutTitle, setWorkoutTitle] = useState(defaultWorkoutTitle)
     const [workoutNote, setWorkoutNote] = useState('')
+    const [workoutTime, setWorkoutTime] = useState(today)
 
     const addExerciseToWorkout = (event) => {
         event.preventDefault()
@@ -58,10 +60,11 @@ const WorkoutForm = () => {
     const saveExercise = async (event) => {
         event.preventDefault()
         try {
-            const workoutToSave = { workoutTitle, workoutNote, workout }
+            const workoutToSave = { workoutTitle, workoutNote, workoutTime, workout }
             await workoutService.addWorkout(workoutToSave) 
             setWorkoutTitle(defaultWorkoutTitle)
             setWorkoutNote('')
+            setWorkoutTime('')
             setWorkout([])
             navigate('/home')
         } catch (exception) {
