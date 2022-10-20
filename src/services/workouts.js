@@ -8,8 +8,13 @@ const setToken = (newToken) => {
 }
 
 const getAll = async () => {
-  const request = await axios.get(baseUrl)
-  return request 
+  const response = await axios.get(baseUrl)
+  return response.data 
+}
+
+const getUserWorkouts = async (userId) => {
+  const response = await axios.get(baseUrl + '/'+ userId)
+  return response.data  
 }
 
 const addWorkout = async (newObject) => {
@@ -23,6 +28,7 @@ const addWorkout = async (newObject) => {
 const exportedObject = {
   setToken, 
   getAll,
+  getUserWorkouts,
   addWorkout
 }
 

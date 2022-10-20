@@ -14,7 +14,6 @@ const Login = ({ setUser, setNotification }) => {
             const user = await loginService.login({
                 username, password
             })
-
             window.localStorage.setItem(
                 'loggedFitnessAppUser', JSON.stringify(user)
             )

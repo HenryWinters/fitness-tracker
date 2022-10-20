@@ -37,7 +37,7 @@ function App() {
         <Routes>
           <Route path='home' element={<Home />} /> 
           <Route path='workouts' element={<Workouts />} /> 
-          <Route path='profile' element={<Profile workouts={workouts} setWorkouts={setWorkouts} />} /> 
+          <Route path='profile' element={<Profile user={user} workouts={workouts} setWorkouts={setWorkouts} />} /> 
           <Route path='workout' element={<WorkoutForm />} />
         </Routes>
         <BottomNav /> 
