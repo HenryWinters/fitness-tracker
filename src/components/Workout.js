@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import ExerciseTable from './ExerciseTable'
+import { format } from 'date-fns'
 
 const Workout = ({workout}) => {
     const [visible, setVisible] = useState(false)
@@ -19,10 +20,13 @@ const Workout = ({workout}) => {
     }, 0)
 
     const WorkoutDetails = () => {
+
+        const date = new Date(workout.workoutTime)
+
         return (
             <div>
                 <h3>{workout.user[0].name}</h3>
-                <h3>{workout.workoutTime}</h3> 
+                <h3>{format(date, "PPPP 'at' p")}</h3> 
                 <h3>{workout.workoutTitle}</h3> 
                 <p>{workout.workoutNote}</p> 
                 <p>{totalSets} Sets</p> 

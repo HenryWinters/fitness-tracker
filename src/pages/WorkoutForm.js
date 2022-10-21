@@ -8,7 +8,6 @@ const WorkoutForm = () => {
     const navigate = useNavigate()
     
     const date = new Date()
-    const formattedDate = format(date, "PPPP 'at' p")
 
     const timeOfDay = (date) => {
         let result = ''
@@ -34,7 +33,7 @@ const WorkoutForm = () => {
     const [setID, setSetID] = useState(0)
     const [workoutTitle, setWorkoutTitle] = useState(defaultWorkoutTitle)
     const [workoutNote, setWorkoutNote] = useState('')
-    const [workoutTime, setWorkoutTime] = useState(formattedDate)
+    const [workoutTime, setWorkoutTime] = useState(date)
 
     const addExerciseToWorkout = (event) => {
         event.preventDefault()
@@ -46,12 +45,6 @@ const WorkoutForm = () => {
         setWeight('')
         setSet('')
         setExerciseNote('')
-    }
-
-    const removeExerciseFromWorkout = (ID) => {
-        const workoutListWithDeletion = workout.filter(exercise => exercise.setID !== ID)
-        console.log(workoutListWithDeletion)
-        setWorkout(workoutListWithDeletion)
     }
 
     const clearExercisesFromWorkout = () => {
