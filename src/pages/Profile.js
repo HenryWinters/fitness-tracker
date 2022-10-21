@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import Workout from './Workout'
+import Workout from '../components/Workout'
 import workoutService from '../services/workouts'
 
 const Profile = ({ user, workouts, setWorkouts }) => {

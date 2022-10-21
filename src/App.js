@@ -2,18 +2,19 @@ import { useState, useEffect } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import './App.css';
 import workoutService from './services/workouts'
-import Login from './components/Login'
+import Login from './pages/Login'
 import TopNav from './components/TopNav'
 import BottomNav from './components/BottomNav'
-import Home from './components/Home'
+import Home from './pages/Home'
 import Workouts from './components/Workouts'
-import Profile from './components/Profile'
-import WorkoutForm from './components/WorkoutForm'
+import Profile from './pages/Profile'
+import WorkoutForm from './pages/WorkoutForm'
 
 function App() {
   const [user, setUser] = useState(null)
   const [workouts, setWorkouts] = useState([])
   const [notification, setNotification] = useState('')
+  const [pageName, setPageName] = useState('')
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedFitnessAppUser')

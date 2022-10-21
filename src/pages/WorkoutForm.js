@@ -1,15 +1,18 @@
 import { useState } from 'react'
 import workoutService from '../services/workouts'
 import { useNavigate } from 'react-router-dom'
+import { format } from 'date-fns'
+import ExerciseTable from '../components/ExerciseTable'
 
 const WorkoutForm = () => {
     const navigate = useNavigate()
+    
+    const date = new Date()
+    const formattedDate = format(date, "PPPP 'at' p")
 
-    const today = new Date()
-
-    const timeOfDay = (today) => {
+    const timeOfDay = (date) => {
         let result = ''
-        let currentHour = today.getHours()
+        let currentHour = date.getHours()
         if (currentHour < 12) {
             result = 'Morning'
         } else if (currentHour < 18) {
@@ -20,7 +23,7 @@ const WorkoutForm = () => {
         return result
     }  
     
-    const defaultWorkoutTitle = timeOfDay(today) + ' Workout'
+    const defaultWorkoutTitle = timeOfDay(date) + ' Workout'
 
     const [exercise, setExercise] = useState('')
     const [set, setSet] = useState('')
@@ -31,7 +34,7 @@ const WorkoutForm = () => {
     const [setID, setSetID] = useState(0)
     const [workoutTitle, setWorkoutTitle] = useState(defaultWorkoutTitle)
     const [workoutNote, setWorkoutNote] = useState('')
-    const [workoutTime, setWorkoutTime] = useState(today)
+    const [workoutTime, setWorkoutTime] = useState(formattedDate)
 
     const addExerciseToWorkout = (event) => {
         event.preventDefault()
@@ -159,7 +162,23 @@ const WorkoutForm = () => {
                     </form> 
                 </div>
             </div> 
-            <div className='workout-table-container'>
+            <ExerciseTable 
+                setWorkout={setWorkout}
+                workout={workout} 
+                headers={['#', 'Exercise', 'Set', 'Rep', 'Weight', 'Notes', 'Actions']} 
+                actions={true}
+            />
+            <div> 
+                <button onClick={() => clearExercisesFromWorkout()}>Clear</button>
+                <button type='submit' onClick={saveExercise}>Save</button> 
+            </div> 
+        </div> 
+    )
+}
+
+export default WorkoutForm
+
+/*<div className='workout-table-container'>
                 <div className='workout-table'>  
                     <div className='workout-table-head'>
                         <h3>#</h3>
@@ -188,13 +207,4 @@ const WorkoutForm = () => {
                         })}  
                     </div>  
                 </div> 
-            </div> 
-            <div> 
-                <button onClick={() => clearExercisesFromWorkout()}>Clear</button>
-                <button type='submit' onClick={saveExercise}>Save</button> 
-            </div> 
-        </div> 
-    )
-}
-
-export default WorkoutForm
+            </div>*/
