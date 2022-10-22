@@ -1,5 +1,7 @@
 import '../index.css'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 
 const TopNav = ({user, setNotification}) => {
     const location = useLocation()
@@ -26,9 +28,15 @@ const TopNav = ({user, setNotification}) => {
 
     return (
         <div id='top-nav-bar'>
-            <button onClick={addWorkout}>Add Workout</button> 
+            <button className='top-nav-button' onClick={addWorkout}>
+                <FontAwesomeIcon icon={faPlus} />
+                <p>Add Workout</p>
+            </button> 
             <h1>{editPathName(location.pathname)}</h1>
-            <button onClick={handleLogOut}>Log Out</button> 
+            <button className='top-nav-button' onClick={handleLogOut}>
+                <p>Log Out</p> 
+                <FontAwesomeIcon icon={faRightFromBracket} />
+            </button> 
         </div> 
     )
 }
