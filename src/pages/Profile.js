@@ -15,7 +15,7 @@ const Profile = ({ user, workouts, setWorkouts }) => {
     if (workouts.length >= 1) {
 
         return (
-            <div>
+            <div className='workouts-container-profile'>
                 {workouts.map(workout => 
                     <Workout key={workout.id} workout={workout} /> 
                 )}
@@ -23,7 +23,9 @@ const Profile = ({ user, workouts, setWorkouts }) => {
         )
     } else {
         return (
-            <p>No workouts yet! Click "Add Workout" to start your first log.</p> 
+            <div className='no-workouts-to-display-profile'> 
+                <p>No workouts yet! Click "Add Workout" to start your first log.</p> 
+            </div> 
         )
     }
 }

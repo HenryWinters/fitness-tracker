@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import workoutService from '../services/workouts'
 import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
@@ -6,6 +6,7 @@ import ExerciseTable from '../components/ExerciseTable'
 
 const WorkoutForm = () => {
     const navigate = useNavigate()
+    const ref = useRef(null)
     
     const date = new Date()
 
@@ -25,9 +26,9 @@ const WorkoutForm = () => {
     const defaultWorkoutTitle = timeOfDay(date) + ' Workout'
 
     const [exercise, setExercise] = useState('')
-    const [set, setSet] = useState('')
-    const [reps, setReps] = useState('')
-    const [weight, setWeight] = useState('')
+    const [set, setSet] = useState(0)
+    const [reps, setReps] = useState(0)
+    const [weight, setWeight] = useState(0)
     const [exerciseNote, setExerciseNote] = useState('')
     const [workout, setWorkout] = useState([])
     const [setID, setSetID] = useState(0)
@@ -41,10 +42,11 @@ const WorkoutForm = () => {
         setWorkout([...workout, newExercise])
         setSetID(setID + 1)
         setExercise('')
-        setReps('')
-        setWeight('')
-        setSet('')
+        setSet(0)
+        setReps(0)
+        setWeight(0)
         setExerciseNote('')
+        ref.current.focus();
     }
 
     const clearExercisesFromWorkout = () => {
@@ -104,6 +106,8 @@ const WorkoutForm = () => {
                         <div>
                             Exercise:
                             <input 
+                                autoFocus
+                                ref={ref}
                                 type='text'
                                 value={exercise}
                                 name='Exercise'
@@ -115,9 +119,9 @@ const WorkoutForm = () => {
                             Set: 
                             <input 
                                 type='text'
-                                value={set}
+                                value={set || ''}
                                 name='Sets'
-                                onChange={({ target }) => setSet(target.value)}
+                                onChange={({ target }) => setSet(parseInt(target.value))}
                                 placeholder='set number'
                             />
                         </div>
@@ -125,9 +129,9 @@ const WorkoutForm = () => {
                             Reps: 
                             <input 
                                 type='text'
-                                value={reps}
+                                value={reps || ''}
                                 name='Reps'
-                                onChange={({ target }) => setReps(target.value)}
+                                onChange={({ target }) => setReps(parseInt(target.value))}
                                 placeholder='number of reps'
                             />
                         </div>
@@ -135,9 +139,9 @@ const WorkoutForm = () => {
                             Weight (lbs): 
                             <input 
                                 type='text'
-                                value={weight}
+                                value={weight || ''}
                                 name='Weight'
-                                onChange={({ target }) => setWeight(target.value)}
+                                onChange={({ target }) => setWeight(parseInt(target.value))}
                                 placeholder='Weight (lbs)'
                             />
                         </div>
@@ -158,7 +162,7 @@ const WorkoutForm = () => {
             <ExerciseTable 
                 setWorkout={setWorkout}
                 workout={workout} 
-                headers={['#', 'Exercise', 'Set', 'Rep', 'Weight', 'Notes', 'Actions']} 
+                headers={['Exercise', 'Set', 'Reps', 'Weight', 'Notes', 'Actions']} 
                 actions={true}
             />
             <div> 

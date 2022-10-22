@@ -19,9 +19,10 @@ const ExerciseTable = ({ setWorkout, workout, headers, actions }) => {
                     <div className='workout-table-body'> 
                         {workout.map((val, key) => {
                             return (
-                                <div className='exercise-entry' key={key}> 
-                                    <p>{key + 1}</p> 
-                                    <p>{val.exercise}</p>
+                                <div className='exercise-entry' key={key}>
+                                    {!(workout[key-1]) ? <p>{val.exercise}</p> 
+                                    : (val.exercise.toLowerCase() !== workout[key-1].exercise.toLowerCase()) ? <p>{val.exercise}</p>
+                                    : <p></p>}
                                     <p>{val.set}</p>
                                     <p>{val.reps}</p>
                                     <p>{val.weight}</p> 
