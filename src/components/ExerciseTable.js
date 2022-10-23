@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDeleteLeft } from '@fortawesome/free-solid-svg-icons'
 
 const ExerciseTable = ({ setWorkout, workout, headers, actions }) => {
 
@@ -29,7 +31,9 @@ const ExerciseTable = ({ setWorkout, workout, headers, actions }) => {
                                     <p>{val.exerciseNote}</p>
                                     {actions ? (
                                         <div className='workout-actions'>
-                                            <button onClick={() => removeExerciseFromWorkout(val.setID)}>X</button>  
+                                            <button onClick={() => removeExerciseFromWorkout(val.setID)}>
+                                                <FontAwesomeIcon icon={faDeleteLeft} />
+                                            </button>  
                                         </div> 
                                     ) : ( null )}
                                 </div> 

@@ -6,7 +6,7 @@ import Login from './pages/Login'
 import TopNav from './components/TopNav'
 import BottomNav from './components/BottomNav'
 import Home from './pages/Home'
-import Workouts from './components/Workouts'
+import Workouts from './pages/Workouts'
 import Profile from './pages/Profile'
 import WorkoutForm from './pages/WorkoutForm'
 
@@ -33,12 +33,12 @@ function App() {
     )
   } else 
     return (
-      <div>
+      <div className='website-container'>
         <TopNav user={user} setNotification={setNotification} /> 
         <Routes>
           <Route path='home' element={<Home />} /> 
-          <Route path='workouts' element={<Workouts />} /> 
-          <Route path='profile' element={<Profile user={user} workouts={workouts} setWorkouts={setWorkouts} />} /> 
+          <Route path='workouts' element={<Workouts user={user} workouts={workouts} setWorkouts={setWorkouts} />} /> 
+          <Route path='profile' element={<Profile />} /> 
           <Route path='workout' element={<WorkoutForm />} />
         </Routes>
         <BottomNav /> 

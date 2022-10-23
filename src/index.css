@@ -7,6 +7,8 @@
   --border-color: rgb(230, 230, 230);
   --box-shadow-color: rgba(0, 0, 0, 0.24);
   --background-white: #F7F9FB; 
+  --top-margin: 63px; 
+  --bottom-margin: 70px; 
 }
 
 body {
@@ -17,13 +19,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 62.5%;
-  background-color: var(--color-4);
+  background-color: var(--color-3);
   overflow-x: hidden; 
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.website-container {
+  overflow-x: hidden; 
 }
 
 /* top navbar start */ 
@@ -146,37 +152,31 @@ code {
 }
 
 .workout-actions {
-  width: 135px; 
+  width: 30px; 
 }
 
-.workout-information { 
-  margin-top: 15vh; 
+.workout-actions > button {
+  border: 0; 
+  padding: 0; 
+  background-color: inherit; 
+  color: var(--color-1);
+  font-size: 1.75em; 
+}
+
+.workout-actions > button:hover {
+  color: var(--color-5);
+  cursor: pointer; 
 }
 
 @media only screen and (max-width: 600px) {
-  .workout-table-head > h3 {
-    width: 90px; 
-  }
-  .exercise-entry > p {
-    width: 90px; 
-  }
-  .workout-actions {
-    width: 90px; 
-  }
-}
-
-@media only screen and (max-width: 400px) {
   .workout-table-container {
     font-size: 0.75em; 
   }
   .workout-table-head > h3 {
-    width: 70px; 
+    width: 15vw; 
   }
   .exercise-entry > p {
-    width: 70px; 
-  }
-  .workout-actions {
-    width: 70px; 
+    width: 15vw; 
   }
 }
 
@@ -222,8 +222,8 @@ code {
 }
 
 .workouts-container-profile { 
-  margin-top: 63px;
-  margin-bottom: 70px;  
+  margin-top: var(--top-margin);
+  margin-bottom: var(--bottom-margin);  
 }
 
 .workout-exercise-titles-container {
@@ -332,7 +332,15 @@ code {
 /* workout form start */ 
 
 .workout-form-and-table-container {
-  margin-bottom: 75px; 
+  min-height: calc(100vh - var(--top-margin) - var(--bottom-margin));
+  margin-top: var(--top-margin);
+  background-color: var(--color-3);
+  padding-top: 25px; 
+  padding-bottom: 50px; 
+}
+
+.workout-input-container > input, .workout-input-container > textarea {
+  border: 1px solid var(--border-color);
 }
 
 .workout-information {
@@ -357,6 +365,42 @@ code {
 .workout-input-container > textarea {
   width: 147px; 
   word-wrap: break-word; 
+}
+
+.workout-form-button {
+  display: flex; 
+  align-items: center; 
+  border: 0; 
+  padding: 0; 
+  background-color: inherit; 
+}
+
+.workout-form-button:hover {
+  color: var(--color-5);
+  cursor: pointer; 
+}
+
+.workout-form-button > p {
+  margin-right: 5px; 
+}
+
+#workout-clear-button {
+  position: absolute; 
+  top: calc(var(--top-margin) + 25px); 
+  left: 15px; 
+}
+
+#workout-save-button {
+  position: absolute; 
+  top: calc(var(--top-margin) + 25px);
+  right: 15px; 
+}
+
+@media only screen and (max-width: 700px) {
+  .exercise-table-workout-form {
+    font-size: 0.5em; 
+  }
+
 }
 /* workout form end */ 
 

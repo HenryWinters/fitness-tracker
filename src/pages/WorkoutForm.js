@@ -3,6 +3,8 @@ import workoutService from '../services/workouts'
 import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 import ExerciseTable from '../components/ExerciseTable'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus, faTrash, faCloudArrowUp } from '@fortawesome/free-solid-svg-icons'
 
 const WorkoutForm = () => {
     const navigate = useNavigate()
@@ -77,8 +79,22 @@ const WorkoutForm = () => {
 
     return (
         <div className='workout-form-and-table-container'>
+            <div className='workout-form-button-container'>
+                <div id='workout-clear-button'>  
+                    <button className='workout-form-button' onClick={() => clearExercisesFromWorkout()}>
+                        <p>Clear</p>
+                        <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                </div> 
+                <div id='workout-save-button'> 
+                    <button className='workout-form-button' type='submit' onClick={saveExercise}>
+                        <p>Save</p>
+                        <FontAwesomeIcon icon={faCloudArrowUp} />
+                    </button> 
+                </div> 
+            </div> 
             <div className='workout-information'>
-                <h1>Workout Information</h1> 
+                <h1>Create Your Workout</h1> 
                 <div className='workout-title'>
                     <div className='workout-input-container'>
                         <label>Title:</label> 
@@ -124,7 +140,8 @@ const WorkoutForm = () => {
                         <div className='workout-input-container'>
                             <label>Set:</label>  
                             <input 
-                                type='text'
+                                className='exercise-number-input'
+                                type='number'
                                 value={set || ''}
                                 name='Sets'
                                 onChange={({ target }) => setSet(parseInt(target.value))}
@@ -134,7 +151,8 @@ const WorkoutForm = () => {
                         <div className='workout-input-container'>
                             <label>Reps:</label>  
                             <input 
-                                type='text'
+                                className='exercise-number-input'
+                                type='number'
                                 value={reps || ''}
                                 name='Reps'
                                 onChange={({ target }) => setReps(parseInt(target.value))}
@@ -144,7 +162,8 @@ const WorkoutForm = () => {
                         <div className='workout-input-container'>
                             <label>Weight (lbs):</label> 
                             <input 
-                                type='text'
+                                className='exercise-number-input'
+                                type='number'
                                 value={weight || ''}
                                 name='Weight'
                                 onChange={({ target }) => setWeight(parseInt(target.value))}
@@ -161,20 +180,20 @@ const WorkoutForm = () => {
                                 placeholder='Notes about exercise'
                             />
                         </div>
-                        <button type='submit'>Add to workout</button> 
+                        <button className='workout-form-button' type='submit'>
+                            <p>Add to workout</p>
+                            <FontAwesomeIcon icon={faPlus} />
+                        </button> 
                     </form> 
                 </div>
             </div> 
-            <ExerciseTable 
+            <ExerciseTable
+                className='exercise-table-workout-form' 
                 setWorkout={setWorkout}
                 workout={workout} 
-                headers={['Exercise', 'Set', 'Reps', 'Weight', 'Notes', 'Actions']} 
+                headers={['Exercise', 'Set', 'Reps', 'Weight', 'Notes']} 
                 actions={true}
             />
-            <div> 
-                <button onClick={() => clearExercisesFromWorkout()}>Clear</button>
-                <button type='submit' onClick={saveExercise}>Save</button> 
-            </div> 
         </div> 
     )
 }
