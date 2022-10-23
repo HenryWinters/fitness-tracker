@@ -18,6 +18,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 100%;
   background-color: var(--color-4);
+  overflow-x: hidden; 
 }
 
 code {
@@ -30,7 +31,7 @@ code {
 #top-nav-bar { 
   position: fixed; 
   top: 0; 
-  width: 100vw; 
+  width: 100%; 
   height: 62px; 
   display: flex; 
   justify-content: space-between;
@@ -71,7 +72,7 @@ code {
 #bottom-nav-bar {
   position: fixed; 
   bottom: 0; 
-  width: 100vw; 
+  width: 100%; 
   padding-bottom: 0px; 
   padding-top: 10px; 
   display: flex; 
@@ -92,7 +93,7 @@ code {
 }
 
 .bottom-nav-icon {
-  font-size: 1.25em; 
+  font-size: 1.5em; 
 }
 
 .bottom-nav-link > p {
@@ -113,15 +114,19 @@ code {
   display: flex; 
   justify-content: center; 
   align-items: center; 
+  padding-bottom: 50px;
 }
 
 .workout-table {
-  border: 2px solid black; 
+  border: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow-color) 0px 1px 4px; 
 }
 
 .workout-table-head {
   display: flex; 
   text-align: center; 
+  background-color: var(--color-1); 
+  color: var(--color-3);
   border-bottom: 1px solid black;
 }
 
@@ -133,6 +138,7 @@ code {
   display: flex; 
   text-align: center; 
   align-items: center; 
+  background-color: var(--background-white);
 }
 
 .exercise-entry > p { 
@@ -147,30 +153,170 @@ code {
   margin-top: 15vh; 
 }
 
+@media only screen and (max-width: 600px) {
+  .workout-table-head > h3 {
+    width: 90px; 
+  }
+  .exercise-entry > p {
+    width: 90px; 
+  }
+  .workout-actions {
+    width: 90px; 
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .workout-table-container {
+    font-size: 0.75em; 
+  }
+  .workout-table-head > h3 {
+    width: 70px; 
+  }
+  .exercise-entry > p {
+    width: 70px; 
+  }
+  .workout-actions {
+    width: 70px; 
+  }
+}
+
 /* workout table end */ 
 
 /* workout start */ 
 
-.workouts-container-profile { 
-  margin-top: 67px; 
-}
-
 .workout-container {
+  width: 100%; 
+  position: relative; 
   background-color: var(--color-3);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow-color) 0px 1px 4px;
 }
 
-.fist-bump-count {
+.profile-title {
   display: flex; 
   align-items: center; 
 }
 
-.fist-bump {
+.profile-picture {
+  width: 25px; 
+  height: 25px; 
+  padding: 5px; 
+  height: relative; 
+  color: var(--color-3);
+  background-color: var(--color-5);
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow-color) 0px 1px 4px;
+  margin-right: 5px;  
+}
+
+.workout-text-container > * {
+  margin-left: 10px; 
+  margin-right: 10px; 
+}
+
+.workout-name-date-container {
   display: flex; 
+  justify-content: space-between;
+  align-items: center; 
+}
+
+.workouts-container-profile { 
+  margin-top: 63px;
+  margin-bottom: 70px;  
+}
+
+.workout-exercise-titles-container {
+  width: 100%;
+  justify-content: center;  
+}
+
+.workout-exercise-titles {
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+}
+
+.new-title {
+  display: flex; 
+  align-items: center; 
+}
+
+.vertical-line {
+  height: 10px; 
+  width: 1px; 
+  background-color: var(--color-5);
+  margin-left: 5px; 
+  margin-right: 5px; 
+}
+
+.exercise-stats {
+  width: 100%; 
+  display: flex; 
+  justify-content: space-evenly;  
+}
+
+.exercise-stat {
+  width: 100px; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+}
+
+.exercise-stat > p {
+  margin-bottom: 0; 
+}
+
+.exercise-stat-number {
+  font-size: 1.5em; 
+}
+
+.view-button-container {
+  width: 100%; 
+  display: flex; 
+  justify-content: center; 
+  margin-top: 30px; 
+}
+
+.view-button {
+  border: 0; 
+  padding: 0;
+  padding-bottom: 5px; 
+  background: inherit;  
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+}
+
+.view-button > p {
+  margin-bottom: 5px; 
+}
+
+.view-button:hover {
+  color: var(--color-5); 
+  cursor: pointer; 
+}
+
+.fist-bump {
+  position: absolute; 
+  bottom: 0px;
+  left: 10px;
+  display: flex; 
+  align-items: center; 
   margin-right: 8px; 
   border: 0; 
   padding: 0;
   font-size: 1em; 
   background-color: inherit; 
+}
+
+.fist-bump:hover {
+  color: var(--color-5); 
+  cursor: pointer; 
+}
+
+.fist-bump > p {
+  margin-left: 8px; 
 }
 
 .left-fist-bump {
@@ -179,3 +325,14 @@ code {
 }
 
 /* workout end */ 
+
+/* workout form start */ 
+
+.workout-form-and-table-container {
+  margin-bottom: 75px; 
+}
+
+/* workout form end */ 
+
+
+

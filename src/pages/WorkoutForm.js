@@ -71,7 +71,7 @@ const WorkoutForm = () => {
     }
 
     return (
-        <div>
+        <div className='workout-form-and-table-container'>
             <div className='workout-information'>
                 <h1>Workout Information</h1> 
                 <div className='workout-title'>
