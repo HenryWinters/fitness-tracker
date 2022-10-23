@@ -16,7 +16,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 100%;
+  font-size: 62.5%;
   background-color: var(--color-4);
   overflow-x: hidden; 
 }
@@ -228,10 +228,12 @@ code {
 
 .workout-exercise-titles-container {
   width: 100%;
+  display: flex; 
   justify-content: center;  
 }
 
 .workout-exercise-titles {
+  width: 90%; 
   display: flex; 
   flex-wrap: wrap; 
   justify-content: center; 
@@ -279,6 +281,7 @@ code {
 }
 
 .view-button {
+  font-size: 1em; 
   border: 0; 
   padding: 0;
   padding-bottom: 5px; 
@@ -332,6 +335,29 @@ code {
   margin-bottom: 75px; 
 }
 
+.workout-information {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+}
+
+.workout-form {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+}
+
+.workout-input-container {
+  width: 225px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.workout-input-container > textarea {
+  width: 147px; 
+  word-wrap: break-word; 
+}
 /* workout form end */ 
 
 

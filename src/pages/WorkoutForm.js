@@ -70,13 +70,18 @@ const WorkoutForm = () => {
         }
     }
 
+    const textAreaAdjust = (event) => {
+        event.target.style.height = 'inherit'
+        event.target.style.height = (event.target.scrollHeight)+'px'
+    }
+
     return (
         <div className='workout-form-and-table-container'>
             <div className='workout-information'>
                 <h1>Workout Information</h1> 
                 <div className='workout-title'>
-                    <div>
-                        Title: 
+                    <div className='workout-input-container'>
+                        <label>Title:</label> 
                         <input
                             type='text'
                             value={workoutTitle}
@@ -87,24 +92,25 @@ const WorkoutForm = () => {
                     </div>
                 </div> 
                 <div className='workout-notes'>
-                    <div>
-                        Notes: 
-                        <input
-                            type='textarea'
+                    <div className='workout-input-container'>
+                        <label>Notes:</label>  
+                        <textarea
                             value={workoutNote}
                             name='Workout Notes'
+                            onKeyDown={textAreaAdjust}
+                            style={{'overflow':'hidden'}}
                             onChange={({ target }) => setWorkoutNote(target.value)}
                             placeholder='How did it go? Write your notes here'
                         />
                     </div> 
                 </div>
             </div> 
-            <div> 
-                <h1>Add Exercises</h1> 
-                <div className='workout-form'>
-                    <form onSubmit={addExerciseToWorkout}>
-                        <div>
-                            Exercise:
+            <div>  
+                <div>
+                    <form className='workout-form' onSubmit={addExerciseToWorkout}>
+                        <h1>Add Exercises</h1>
+                        <div className='workout-input-container'>
+                            <label>Exercise:</label>
                             <input 
                                 autoFocus
                                 ref={ref}
@@ -115,8 +121,8 @@ const WorkoutForm = () => {
                                 placeholder='title of exercise'
                             />
                         </div>
-                        <div>
-                            Set: 
+                        <div className='workout-input-container'>
+                            <label>Set:</label>  
                             <input 
                                 type='text'
                                 value={set || ''}
@@ -125,8 +131,8 @@ const WorkoutForm = () => {
                                 placeholder='set number'
                             />
                         </div>
-                        <div>
-                            Reps: 
+                        <div className='workout-input-container'>
+                            <label>Reps:</label>  
                             <input 
                                 type='text'
                                 value={reps || ''}
@@ -135,8 +141,8 @@ const WorkoutForm = () => {
                                 placeholder='number of reps'
                             />
                         </div>
-                        <div>
-                            Weight (lbs): 
+                        <div className='workout-input-container'>
+                            <label>Weight (lbs):</label> 
                             <input 
                                 type='text'
                                 value={weight || ''}
@@ -145,8 +151,8 @@ const WorkoutForm = () => {
                                 placeholder='Weight (lbs)'
                             />
                         </div>
-                        <div>
-                            Notes: 
+                        <div className='workout-input-container'>
+                            <label>Notes:</label> 
                             <input 
                                 type='text'
                                 value={exerciseNote}
@@ -174,34 +180,3 @@ const WorkoutForm = () => {
 }
 
 export default WorkoutForm
-
-/*<div className='workout-table-container'>
-                <div className='workout-table'>  
-                    <div className='workout-table-head'>
-                        <h3>#</h3>
-                        <h3>Exercise</h3>
-                        <h3>Set</h3>
-                        <h3>Reps</h3> 
-                        <h3>Weight</h3> 
-                        <h3>Notes</h3>
-                        <h3>Actions</h3>
-                    </div> 
-                    <div className='workout-table-body'> 
-                        {workout.map((val, key) => {
-                            return (
-                                <div className='exercise-entry' key={key}> 
-                                    <p>{key + 1}</p> 
-                                    <p>{val.exercise}</p>
-                                    <p>{val.set}</p>
-                                    <p>{val.reps}</p>
-                                    <p>{val.weight}</p> 
-                                    <p>{val.exerciseNote}</p>
-                                    <div className='workout-actions'>
-                                        <button onClick={() => removeExerciseFromWorkout(val.setID)}>X</button>  
-                                    </div> 
-                                </div> 
-                            )
-                        })}  
-                    </div>  
-                </div> 
-            </div>*/
