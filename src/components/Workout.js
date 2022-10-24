@@ -2,9 +2,9 @@ import { useState } from 'react'
 import ExerciseTable from './ExerciseTable'
 import { format } from 'date-fns'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHandFist, faChevronDown, faChevronUp, faDumbbell } from '@fortawesome/free-solid-svg-icons'
+import { faHandFist, faChevronDown, faChevronUp, faDumbbell, faDeleteLeft } from '@fortawesome/free-solid-svg-icons'
 
-const Workout = ({workout}) => {
+const Workout = ({workout, user}) => {
     const [visible, setVisible] = useState(false)
 
     const hideWhenVisible = {
@@ -26,6 +26,12 @@ const Workout = ({workout}) => {
         return arr.indexOf(item) === index
     })
     const totalExercises = arrOfExerciseTitles.length
+
+    const handleWorkoutDelete = (event) => {
+        event.preventDefault() 
+        console.log('Add delete function!');
+    }
+
 
     const WorkoutDetails = () => {
 
@@ -71,11 +77,14 @@ const Workout = ({workout}) => {
                     </div> 
                 </div> 
                 <button className='fist-bump'>
-                        <FontAwesomeIcon className='left-fist-bump' icon={faHandFist} rotation={90} />
-                        <FontAwesomeIcon icon={faHandFist} rotation={270} />
-                        <p>{workout.likeCount}</p>
+                    <FontAwesomeIcon className='left-fist-bump' icon={faHandFist} rotation={90} />
+                    <FontAwesomeIcon icon={faHandFist} rotation={270} />
+                    <p>{workout.likeCount}</p>
                 </button> 
-                
+                {user.id === workout.user[0].id ? 
+                <button className='delete-workout-button' onClick={handleWorkoutDelete}>
+                    <FontAwesomeIcon icon={faDeleteLeft} />
+                </button> : null}
             </div> 
         )
     }
