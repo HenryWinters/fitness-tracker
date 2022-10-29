@@ -3,8 +3,9 @@ import ExerciseTable from './ExerciseTable'
 import { format } from 'date-fns'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHandFist, faChevronDown, faChevronUp, faDumbbell, faDeleteLeft } from '@fortawesome/free-solid-svg-icons'
+import workoutService from '../services/workouts'
 
-const Workout = ({workout, user}) => {
+const Workout = ({workout, user, setWorkouts}) => {
     const [visible, setVisible] = useState(false)
 
     const hideWhenVisible = {
@@ -16,20 +17,13 @@ const Workout = ({workout, user}) => {
         setVisible(!visible)
     }
 
-    const totalSets = workout.workout.length
-    const totalReps = workout.workout.reduce((accumulator, value) => {
-        return accumulator + parseInt(value.reps)
-    }, 0)
-    const arrOfExerciseTitles = workout.workout.map((exerciseObj) => {
-        return exerciseObj.exercise
-    }).filter((item, index, arr) => {
-        return arr.indexOf(item) === index
-    })
-    const totalExercises = arrOfExerciseTitles.length
-
-    const handleWorkoutDelete = (event) => {
+    const handleWorkoutDelete = async (event) => {
         event.preventDefault() 
-        console.log('Add delete function!');
+        if (window.confirm(`Remove ${workout.workoutTitle}?`)) {
+            await workoutService.deleteWorkout(workout.id)
+            const updatedUserWorkoutList = await workoutService.getUserWorkouts(user.id)
+            setWorkouts(updatedUserWorkoutList)
+        }
     }
 
 
@@ -52,11 +46,11 @@ const Workout = ({workout, user}) => {
                 </div> 
                 <div className='workout-exercise-titles-container'> 
                     <div className='workout-exercise-titles'> 
-                        {arrOfExerciseTitles.map((exerciseTitle, i) => {
+                        {workout.exerciseTitles.map((exerciseTitle, i) => {
                             return (
                                 <div key={i} className='new-title'> 
                                     <p>{exerciseTitle}</p> 
-                                    {arrOfExerciseTitles[i+1] ? <div className='vertical-line'></div> : <div></div>}
+                                    {workout.exerciseTitles[i+1] ? <div className='vertical-line'></div> : <div></div>}
                                 </div> 
                             )
                         })}
@@ -64,15 +58,15 @@ const Workout = ({workout, user}) => {
                 </div> 
                 <div className='exercise-stats'> 
                     <div className='exercise-stat'> 
-                        <p className='exercise-stat-number'>{totalExercises}</p>
+                        <p className='exercise-stat-number'>{workout.totalExercises}</p>
                         <p>Exercises</p> 
                     </div> 
                     <div className='exercise-stat'> 
-                        <p className='exercise-stat-number'>{totalSets}</p> 
+                        <p className='exercise-stat-number'>{workout.totalSets}</p> 
                         <p>Sets</p> 
                     </div> 
                     <div className='exercise-stat'> 
-                        <p className='exercise-stat-number'>{totalReps}</p>
+                        <p className='exercise-stat-number'>{workout.totalReps}</p>
                         <p>Reps</p> 
                     </div> 
                 </div> 

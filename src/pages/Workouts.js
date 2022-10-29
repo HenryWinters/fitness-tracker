@@ -16,7 +16,7 @@ const Workouts = ({ user, workouts, setWorkouts }) => {
         return (
             <div className='workouts-container-profile'>
                 {workouts.map(workout => 
-                    <Workout key={workout.id} workout={workout} user={user} /> 
+                    <Workout key={workout.id} workout={workout} user={user} setWorkouts={setWorkouts}/> 
                 )}
             </div> 
         )

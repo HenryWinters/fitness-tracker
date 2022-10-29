@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import workoutService from '../services/workouts'
 import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
@@ -27,16 +27,25 @@ const WorkoutForm = () => {
     
     const defaultWorkoutTitle = timeOfDay(date) + ' Workout'
 
+    /* checking if there is a workout in progress stored in local storage */ 
+    const initialWorkoutData = localStorage.getItem('workoutInProgress')
+        ? JSON.parse(localStorage.getItem('workoutInProgress'))
+        : []
+
     const [exercise, setExercise] = useState('')
     const [set, setSet] = useState(0)
     const [reps, setReps] = useState(0)
     const [weight, setWeight] = useState(0)
     const [exerciseNote, setExerciseNote] = useState('')
-    const [workout, setWorkout] = useState([])
+    const [workout, setWorkout] = useState(initialWorkoutData) 
     const [setID, setSetID] = useState(0)
     const [workoutTitle, setWorkoutTitle] = useState(defaultWorkoutTitle)
     const [workoutNote, setWorkoutNote] = useState('')
     const [workoutTime, setWorkoutTime] = useState(date)
+
+    useEffect(() => {
+        localStorage.setItem('workoutInProgress', JSON.stringify(workout))
+    }, [workout])
 
     const addExerciseToWorkout = (event) => {
         event.preventDefault()
@@ -60,13 +69,23 @@ const WorkoutForm = () => {
     const saveExercise = async (event) => {
         event.preventDefault()
         try {
-            const workoutToSave = { workoutTitle, workoutNote, workoutTime, workout }
+            const totalSets = workout.length
+            const totalReps = workout.reduce((accumulator, value) => {
+                    return accumulator + parseInt(value.reps)
+                }, 0)
+            const exerciseTitles = workout.map((exerciseObj) => {
+                return exerciseObj.exercise
+            }).filter((item, index, arr) => {
+                return arr.indexOf(item) === index
+            })
+            const totalExercises = exerciseTitles.length
+
+            const workoutToSave = { workoutTitle, workoutNote, workoutTime, workout, totalSets, totalReps, totalExercises, exerciseTitles }
             await workoutService.addWorkout(workoutToSave) 
             setWorkoutTitle(defaultWorkoutTitle)
             setWorkoutNote('')
-            setWorkoutTime('')
+            setWorkoutTime(date)
             setWorkout([])
-            navigate('/home')
         } catch (exception) {
             console.log('error')
         }
