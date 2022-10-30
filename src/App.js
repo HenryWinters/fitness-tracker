@@ -31,7 +31,7 @@ function App() {
       <div className="App">
         <Routes> 
           <Route path='/' element={<Login setUser={setUser} setNotification={setNotification} />} /> 
-          <Route path='register' element={<Register setUser={setUser} />} />
+          <Route path='register' element={<Register setNotification={setNotification} />} />
         </Routes> 
       </div>
     )
