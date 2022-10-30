@@ -32,6 +32,49 @@ code {
   overflow-x: hidden; 
 }
 
+/* login start */ 
+
+.login-container {
+  width: 100%; 
+  height: 100vh; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+.login-input {
+  border: 1px solid var(--border-color);
+}
+
+#login-button {
+  margin-top: 10px; 
+  background-color: var(--background-white); 
+  color: var(--color-1);
+  border: 1px solid var(--border-color);
+}
+
+#login-button:hover {
+  cursor: pointer; 
+  background-color: var(--color-4);
+  border: 1px solid var(--color-4); 
+  box-shadow: var(--box-shadow-color) 0px 1px 4px;
+}
+
+.register-button {
+  margin-top: 10px; 
+  border: 0; 
+  padding: 0;
+  background-color: inherit
+}
+
+.register-button:hover {
+  color: var(--color-5);
+  cursor: pointer; 
+}
+
+/* login end */ 
+
 /* top navbar start */ 
 
 #top-nav-bar { 

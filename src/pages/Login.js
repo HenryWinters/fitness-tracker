@@ -34,12 +34,17 @@ const Login = ({ setUser, setNotification }) => {
         }
     }
 
+    const handleRegisterClick = () => {
+        navigate('/register')
+    }
+
     return (
-        <div>
+        <div className='login-container'>
             <form onSubmit={handleLogin}> 
                 <div> 
                     <p>Username</p>
                     <input
+                        className='login-input'
                         type='text'
                         name='Username'
                         id='username'
@@ -50,6 +55,7 @@ const Login = ({ setUser, setNotification }) => {
                 <div>  
                     <p>Password</p>
                     <input 
+                        className='login-input'
                         type='password'
                         name='Password'
                         id='password'
@@ -59,6 +65,7 @@ const Login = ({ setUser, setNotification }) => {
                 </div> 
                 <button type='submit' id='login-button'>Login</button>
             </form> 
+            <button className='register-button' onClick={handleRegisterClick}>New? Click here to register</button> 
         </div> 
     )
 }

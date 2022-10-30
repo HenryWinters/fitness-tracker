@@ -11,7 +11,13 @@ const Workout = ({workout, user, setWorkouts}) => {
     const hideWhenVisible = {
         display: visible ? 'none' : 'block',
     }
-    const showWhenVisible = { display: visible ? '' : 'none' }
+    const showWhenVisible = { 
+        display: visible ? '' : 'none' 
+    }
+
+    const workoutColor = { 
+        backgroundColor: `${workout.user[0].color}` 
+    }
 
     const toggleVisibility = () => {
         setVisible(!visible)
@@ -36,7 +42,7 @@ const Workout = ({workout, user, setWorkouts}) => {
                 <div className='workout-text-container'> 
                     <div className='workout-name-date-container'> 
                         <div className='profile-title'> 
-                            <FontAwesomeIcon className='profile-picture' icon={faDumbbell} />
+                            <FontAwesomeIcon className='profile-picture' style={workoutColor} icon={faDumbbell} />
                             <h3>{workout.user[0].name}</h3>
                         </div> 
                         <p>{format(date, "PPPP 'at' p")}</p> 

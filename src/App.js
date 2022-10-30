@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route, Link } from 'react-router-dom'
+import { Outlet, Routes, Route, Link } from 'react-router-dom'
 import './App.css';
 import workoutService from './services/workouts'
 import Login from './pages/Login'
@@ -9,6 +9,7 @@ import Home from './pages/Home'
 import Workouts from './pages/Workouts'
 import Profile from './pages/Profile'
 import WorkoutForm from './pages/WorkoutForm'
+import Register from './pages/Register'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -44,6 +45,37 @@ function App() {
         <BottomNav /> 
       </div> 
     )
+
+  /*const PagesWithNavbars = () => {
+      return (
+        <div> 
+          <TopNav user={user} setNotification={setNotification} /> 
+          <Outlet /> 
+          <BottomNav />
+        </div>  
+      )
+    }
+
+    if (user) {
+      return (
+          <Routes> 
+            <Route path='/' element={<PagesWithNavbars />}>
+              <Route path='home' element={<Home />} /> 
+              <Route path='workouts' element={<Workouts user={user} workouts={workouts} setWorkouts={setWorkouts} />} /> 
+              <Route path='profile' element={<Profile />} /> 
+              <Route path='workout' element={<WorkoutForm />} />
+            </Route> 
+          </Routes> 
+      )
+    } else { 
+      return (
+          <Routes> 
+              <Route path='/' element={<Login setUser={setUser} setNotification={setNotification} />} />
+              <Route path='register' element={<Register setUser={setUser} />} />
+          </Routes> 
+      )
+    }
+    */    
 }
 
 export default App;
