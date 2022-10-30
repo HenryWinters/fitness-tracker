@@ -10,6 +10,7 @@ const TopNav = ({user, setNotification}) => {
     const handleLogOut = (event) => {
         event.preventDefault()
         window.localStorage.removeItem('loggedFitnessAppUser')
+        navigate('/')
         window.location.reload(false)
         setNotification({ message: `${user.name} logged out`, type: 'error' })
         setTimeout(() => {

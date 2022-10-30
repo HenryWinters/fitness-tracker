@@ -29,7 +29,10 @@ function App() {
   if (user === null) {
     return (
       <div className="App">
-        <Login setUser={setUser} setNotification={setNotification} /> 
+        <Routes> 
+          <Route path='/' element={<Login setUser={setUser} setNotification={setNotification} />} /> 
+          <Route path='register' element={<Register setUser={setUser} />} />
+        </Routes> 
       </div>
     )
   } else 
@@ -45,15 +48,16 @@ function App() {
         <BottomNav /> 
       </div> 
     )
-
-  /*const PagesWithNavbars = () => {
-      return (
-        <div> 
-          <TopNav user={user} setNotification={setNotification} /> 
-          <Outlet /> 
-          <BottomNav />
-        </div>  
-      )
+  
+    /*
+    const PagesWithNavbars = () => {
+    return (
+      <div> 
+        <TopNav user={user} setNotification={setNotification} /> 
+        <Outlet /> 
+        <BottomNav />
+      </div>  
+    )
     }
 
     if (user) {
