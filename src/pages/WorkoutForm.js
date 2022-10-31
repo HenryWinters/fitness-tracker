@@ -62,6 +62,7 @@ const WorkoutForm = () => {
 
     const clearExercisesFromWorkout = () => {
         if (window.confirm('Clear all exercise?')) {
+            setWorkoutNote('')
             setWorkout([])
         }
     }
