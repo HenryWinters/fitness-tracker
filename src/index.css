@@ -563,5 +563,21 @@ code {
 }
 /* workout form end */ 
 
+/* profile start */ 
 
+.profile-heading-container {
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;  
+  margin: calc(var(--top-margin) + 50px);
+}
 
+.userIcon {
+  width: 30px; 
+  height: 30px; 
+  padding: 15px; 
+  border-radius: 50%; 
+}
+
+/* profile end */ 

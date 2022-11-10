@@ -40,15 +40,15 @@ function App() {
   } else 
     return (
       <div className='website-container'>
-        <TopNav user={user} setNotification={setNotification} /> 
+        <TopNav user={user} setNotification={setNotification} pageName={pageName} /> 
         <Routes>
           <Route path='/' element={<> </>} />
           <Route path='home' element={<Home />} /> 
           <Route path='workouts' element={<Workouts user={user} workouts={workouts} setWorkouts={setWorkouts} />} /> 
-          <Route path='profile' element={<Profile />} /> 
+          <Route path='profile/:id' element={<Profile user={user} />} /> 
           <Route path='workout' element={<WorkoutForm />} />
         </Routes>
-        <BottomNav /> 
+        <BottomNav user={user} /> 
       </div> 
     )
     

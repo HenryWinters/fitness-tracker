@@ -24,7 +24,8 @@ const TopNav = ({user, setNotification}) => {
     }
 
     const editPathName = (string) => {
-        return string.charAt(1).toUpperCase() + string.slice(2)
+        const firstPartOfPathName = string.split('/')[1]
+        return firstPartOfPathName.charAt(0).toUpperCase() + firstPartOfPathName.slice(1)
     }
 
     return (

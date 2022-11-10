@@ -34,23 +34,23 @@ const Register = ({ setNotification }) => {
                 setCity('')
                 setBio('')
                 setColor('')
-                setNotification({ message: `Welcome, ${name}! Log in to start your logs`})
+                setNotification({ message: `Welcome, ${name}! Log in to start your logs`, type: 'success'})
                 setTimeout(() => {
                     setNotification({ message: null, type: null })
-                }, 5000)
+                }, 10000)
                 navigate('/')
             }
             catch (exception) {
                 setNotification({ message: exception.response.data.error, type: 'error'})
                 setTimeout(() => {
                     setNotification({ message: null, type: null })
-                }, 5000)
+                }, 10000)
             } 
         } else {
-            setNotification({ message: `Passwords don't match`})
+            setNotification({ message: `Passwords don't match`, type: 'error'})
                 setTimeout(() => {
                     setNotification({ message: null, type: null })
-                }, 5000)
+                }, 10000)
         }
     }  
 
