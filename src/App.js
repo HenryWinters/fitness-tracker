@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Outlet, Routes, Route, Navigate, Link } from 'react-router-dom'
 import './App.css';
 import workoutService from './services/workouts'
+import userService from './services/users'
 import Login from './pages/Login'
 import TopNav from './components/TopNav'
 import BottomNav from './components/BottomNav'
@@ -11,12 +12,12 @@ import Workouts from './pages/Workouts'
 import Profile from './pages/Profile'
 import WorkoutForm from './pages/WorkoutForm'
 import Register from './pages/Register'
+import Users from './pages/Users'
 
 function App() {
   const [user, setUser] = useState(null)
   const [workouts, setWorkouts] = useState([])
   const [notification, setNotification] = useState({ message: null, type: null })
-  const [pageName, setPageName] = useState('')
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedFitnessAppUser')
@@ -24,6 +25,7 @@ function App() {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
       workoutService.setToken(user.token)
+      userService.setToken(user.token)
     }
   }, [])
   
@@ -40,13 +42,14 @@ function App() {
   } else 
     return (
       <div className='website-container'>
-        <TopNav user={user} setNotification={setNotification} pageName={pageName} /> 
+        <TopNav user={user} setNotification={setNotification} /> 
         <Routes>
           <Route path='/' element={<> </>} />
           <Route path='home' element={<Home />} /> 
-          <Route path='workouts' element={<Workouts user={user} workouts={workouts} setWorkouts={setWorkouts} />} /> 
-          <Route path='profile/:id' element={<Profile user={user} />} /> 
+          <Route path='workouts/:username' element={<Workouts user={user} workouts={workouts} setWorkouts={setWorkouts} />} /> 
+          <Route path='profile/:username' element={<Profile user={user} />} /> 
           <Route path='workout' element={<WorkoutForm />} />
+          <Route path='users' element={<Users user={user} setUser={setUser} />} />
         </Routes>
         <BottomNav user={user} /> 
       </div> 

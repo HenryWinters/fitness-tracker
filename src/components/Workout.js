@@ -27,11 +27,10 @@ const Workout = ({workout, user, setWorkouts}) => {
         event.preventDefault() 
         if (window.confirm(`Remove ${workout.workoutTitle}?`)) {
             await workoutService.deleteWorkout(workout.id)
-            const updatedUserWorkoutList = await workoutService.getUserWorkouts(user.id)
+            const updatedUserWorkoutList = await workoutService.getUserWorkouts(user.username)
             setWorkouts(updatedUserWorkoutList)
         }
     }
-
 
     const WorkoutDetails = () => {
 

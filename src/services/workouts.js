@@ -12,8 +12,8 @@ const getAll = async () => {
   return response.data 
 }
 
-const getUserWorkouts = async (userId) => {
-  const response = await axios.get(baseUrl + '/'+ userId)
+const getUserWorkouts = async (username) => {
+  const response = await axios.get(baseUrl + '/'+ username)
   return response.data  
 }
 

@@ -570,7 +570,7 @@ code {
   flex-direction: column; 
   justify-content: center;
   align-items: center;  
-  margin: calc(var(--top-margin) + 50px);
+  margin-top: calc(var(--top-margin) + 50px);
 }
 
 .userIcon {
@@ -578,6 +578,90 @@ code {
   height: 30px; 
   padding: 15px; 
   border-radius: 50%; 
+  border: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow-color) 0px 1px 4px;
 }
 
+.follow-container {
+  display: flex; 
+  justify-content: space-evenly; 
+  align-items: center; 
+}
+
+.follow-container > div {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.profile-stats-container {
+  display: flex; 
+  justify-content: space-evenly; 
+  align-items: center; 
+}
+
+.profile-stats-container > div {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.profile-workouts-link-container {
+  display: flex; 
+  justify-content: center; 
+}
+
+.profile-workouts-link { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  text-decoration: none; 
+  color: black; 
+}
+
+.profile-workouts-link:hover { 
+  color: var(--color-5); 
+  cursor: pointer; 
+}
 /* profile end */ 
+
+/* users page start */
+
+.users-container {
+  margin-top: var(--top-margin);
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.user-on-users-list { 
+  display: grid; 
+  grid-template-columns: 100px 100px 100px;
+}
+
+.user-on-users-list > button {
+  width: 65px; 
+  height: 20px; 
+  justify-self: center; 
+  align-self: center;  
+}
+
+.user-on-users-list > button:hover {  
+  background-color: var(--color-5);
+  cursor: pointer; 
+}
+
+.follow-button {
+  background-color: var(--background-white);
+  border: 1px solid var(--border-color);
+}
+
+.unfollow-button {
+  background-color: var(--color-4); 
+  border: 1px solid var(--border-color);
+}
+/* users page end */ 

@@ -1,15 +1,20 @@
-import { useEffect } from "react"
+import { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import Workout from '../components/Workout'
 import workoutService from '../services/workouts'
 
 const Workouts = ({ user, workouts, setWorkouts }) => {
+
+    const params = useParams()
+    const username = params.username
+
     useEffect(() => {
         const getWorkouts = async () => {
-            const userWorkouts = await workoutService.getUserWorkouts(user.id)
+            const userWorkouts = await workoutService.getUserWorkouts(username)
             setWorkouts(userWorkouts)
         } 
         getWorkouts()
-    }, [user])
+    }, [username])
 
     if (workouts.length >= 1) {
 
