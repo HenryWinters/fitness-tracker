@@ -14,14 +14,19 @@ const Users = ({user, setUser}) => {
         getUsers()
     }, [])
 
+    useEffect(() => {
+        window.localStorage.setItem(
+            'loggedFitnessAppUser', JSON.stringify(user)
+        )
+    }, [user])
+
     const filteredUsers = usersList.filter(user => user.name.toLowerCase().includes(searchParameter.toLowerCase()))
 
     const User = ({ id, name, city}) => {
 
         const addFollow = async () => {
             await userService.addFollow(id, user.token)
-            const currentUser = await userService.getUser(user.username)
-            setUser({...user, following: currentUser[0].following})
+            setUser({...user, following: user.following.concat(id)})
         }
 
         const removeFollow = async () => {

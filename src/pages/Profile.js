@@ -75,6 +75,9 @@ const Profile = ({ user }) => {
                         : <p>View {userInformation.name}'s workouts</p>}
                     </NavLink>
                 </div> 
+                <NavLink to={'/users'}>
+                    <p>Add followers</p>
+                </NavLink>
             </div> 
         )
     }
