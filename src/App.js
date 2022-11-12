@@ -18,6 +18,7 @@ function App() {
   const [user, setUser] = useState(null)
   const [workouts, setWorkouts] = useState([])
   const [notification, setNotification] = useState({ message: null, type: null })
+  const [following, setFollowing] = useState([])
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedFitnessAppUser')
@@ -49,7 +50,7 @@ function App() {
           <Route path='workouts/:username' element={<Workouts user={user} workouts={workouts} setWorkouts={setWorkouts} />} /> 
           <Route path='profile/:username' element={<Profile user={user} />} /> 
           <Route path='workout' element={<WorkoutForm />} />
-          <Route path='users' element={<Users user={user} setUser={setUser} />} />
+          <Route path='users' element={<Users user={user} setUser={setUser} following={following} setFollowing={setFollowing} />} />
         </Routes>
         <BottomNav user={user} /> 
       </div> 

@@ -1,11 +1,12 @@
 import userService from '../services/users'
 import { useState, useEffect } from 'react'
 
-const Users = ({user, setUser}) => {
+const Users = ({user, setUser, following, setFollowing}) => {
 
     const [searchParameter, setSearchParameter] = useState('')
     const [usersList, setUsersList] = useState([])
     
+    /* getting array of all users */ 
     useEffect(() => {
         const getUsers = async () => {
             const users = await userService.getAllUsers()
@@ -14,11 +15,15 @@ const Users = ({user, setUser}) => {
         getUsers()
     }, [])
 
+    /* getting array of who user is following */ 
     useEffect(() => {
-        window.localStorage.setItem(
-            'loggedFitnessAppUser', JSON.stringify(user)
-        )
-    }, [user])
+        const getUser = async () => {
+            const currentUser = await userService.getUser(user.username)
+            const whoUserIsFollowing = currentUser[0].following
+            setFollowing(whoUserIsFollowing)
+        } 
+        getUser()
+    }, [])
 
     const filteredUsers = usersList.filter(user => user.name.toLowerCase().includes(searchParameter.toLowerCase()))
 
@@ -26,18 +31,23 @@ const Users = ({user, setUser}) => {
 
         const addFollow = async () => {
             await userService.addFollow(id, user.token)
-            setUser({...user, following: user.following.concat(id)})
+            const updatedUser = await userService.getUser(user.username)
+            const updatedFollowing = updatedUser[0].following
+            setFollowing(updatedFollowing)
         }
 
         const removeFollow = async () => {
-            console.log('NEED TO ADD THIS REMOVE FOLLOW FUNCTION')
+            await userService.removeFollow(id, user.token)
+            const updatedUser = await userService.getUser(user.username)
+            const updatedFollowing = updatedUser[0].following
+            setFollowing(updatedFollowing)
         }
 
         return (
             <div className='user-on-users-list'>
                 <p>{name}</p>
                 <p>{city}</p>
-                {user.following.includes(id) 
+                {following.includes(id) 
                 ? <button className='unfollow-button' onClick={removeFollow}>Unfollow</button>
                 : <button className='follow-button' onClick={addFollow}>Follow</button>
                 }   

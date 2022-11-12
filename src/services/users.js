@@ -30,11 +30,20 @@ const addFollow = async (id) => {
     return response.data
 }
 
+const removeFollow = async (id) => {
+    const config = {
+        headers: { Authorization: token },
+    }
+    const response = await axios.patch(baseUrl + '/unfollow/' + id, {id}, config)
+    return response.data
+}
+
 const exportedObject = {
     addUser, 
     getUser, 
     getAllUsers, 
     addFollow, 
+    removeFollow, 
     setToken
 }
 
