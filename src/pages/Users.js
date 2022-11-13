@@ -36,12 +36,12 @@ const Users = ({user, setUser, following, setFollowing}) => {
                     value={searchParameter}
                     name='Search parameter'
                     onChange={({ target }) => setSearchParameter(target.value)}
-                    placeholder='Type here to search users'
+                    placeholder='Type to search users'
                 />
             </div> 
             {searchParameter.length > 0
             ? filteredUsers.map(person => person.id !== user.id 
-                ? <User key={person.id} id={person.id} name={person.name} city={person.city} user={user} following={following} setFollowing={setFollowing} /> 
+                ? <User key={person.id} id={person.id} username={person.username} name={person.name} city={person.city} user={user} following={following} setFollowing={setFollowing} /> 
                 : null)
             : <div></div>}
         </div> 

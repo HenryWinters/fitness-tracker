@@ -607,10 +607,12 @@ code {
 
 .profile-unfollow-button:hover {
   background-color: var(--background-white); 
+  cursor: pointer; 
 }
 
 .profile-follow-button:hover {
   background-color: var(--color-4);
+  cursor: pointer; 
 }
 
 .follow-container {
@@ -662,16 +664,34 @@ code {
 /* users page start */
 
 .users-container {
-  margin-top: var(--top-margin);
+  margin-top: calc(var(--top-margin) + 50px);
   display: flex; 
   flex-direction: column; 
   align-items: center; 
   justify-content: center; 
 }
 
+.search-container {
+  margin-bottom: 25px; 
+}
+
+.search-container > input {
+  margin-left: 10px; 
+  border: 1px solid var(--border-color);
+}
+
 .user-on-users-list { 
   display: grid; 
   grid-template-columns: 100px 100px 100px;
+}
+
+.users-list-link-to-profile { 
+  text-decoration: none; 
+  color: var(--color-1); 
+}
+
+.users-list-link-to-profile:hover { 
+  color: var(--color-5); 
 }
 
 .user-on-users-list > button {
@@ -689,10 +709,12 @@ code {
 .follow-button {
   background-color: var(--background-white);
   border: 1px solid var(--border-color);
+  border-radius: 25px; 
 }
 
 .unfollow-button {
   background-color: var(--color-4); 
   border: 1px solid var(--border-color);
+  border-radius: 25px; 
 }
 /* users page end */ 
