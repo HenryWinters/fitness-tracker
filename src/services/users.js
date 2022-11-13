@@ -22,6 +22,11 @@ const getAllUsers = async () => {
     return response.data
 }
 
+const getWhoUserIsFollowing = async (username) => {
+    const response = await axios.get(baseUrl + '/' + username + '/following')
+    return response.data
+}
+
 const addFollow = async (id) => {
     const config = {
         headers: { Authorization: token },
@@ -43,7 +48,8 @@ const exportedObject = {
     getUser, 
     getAllUsers, 
     addFollow, 
-    removeFollow, 
+    removeFollow,
+    getWhoUserIsFollowing, 
     setToken
 }
 

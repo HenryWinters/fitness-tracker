@@ -29,6 +29,16 @@ function App() {
       userService.setToken(user.token)
     }
   }, [])
+
+  useEffect(() => {
+    if (user) {
+      const getWhoUserFollowing = async () => {
+        const userFollowing = await userService.getWhoUserIsFollowing(user.username)
+        setFollowing(userFollowing)
+      } 
+      getWhoUserFollowing()
+    }
+  }, [])
   
   if (user === null) {
     return (
@@ -48,49 +58,13 @@ function App() {
           <Route path='/' element={<> </>} />
           <Route path='home' element={<Home user={user} workouts={workouts} setWorkouts={setWorkouts} />} /> 
           <Route path='workouts/:username' element={<Workouts user={user} workouts={workouts} setWorkouts={setWorkouts} />} /> 
-          <Route path='profile/:username' element={<Profile user={user} />} /> 
+          <Route path='profile/:username' element={<Profile user={user} following={following} setFollowing={setFollowing} />} /> 
           <Route path='workout' element={<WorkoutForm />} />
           <Route path='users' element={<Users user={user} setUser={setUser} following={following} setFollowing={setFollowing} />} />
         </Routes>
         <BottomNav user={user} /> 
       </div> 
     )
-    
-  
-    /*
-
-    const ProtectedRoute = ({ children }) => {
-      if (user === null) {
-        return <Navigate to='/login' /> 
-      }
-      return children; 
-    }
-
-    const PagesWithNavbars = () => {
-    return (
-      <div> 
-        <TopNav user={user} setNotification={setNotification} /> 
-        <Outlet /> 
-        <BottomNav />
-      </div>  
-    )
-    }
-
-    return (
-        <Routes>
-          <Route path='/' element={<PagesWithNavbars />}>
-            <Route path='home' element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>} /> 
-            <Route path='workouts' element={<Workouts user={user} workouts={workouts} setWorkouts={setWorkouts} />} /> 
-            <Route path='profile' element={<Profile />} /> 
-            <Route path='workout' element={<WorkoutForm />} />
-          </Route> 
-          <Route path='/login' element={<Login setUser={setUser} setNotification={setNotification} />} />
-          <Route path='register' element={<Register setUser={setUser} />} />
-        </Routes> 
-    )   */  
 }
 
 export default App;

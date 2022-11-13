@@ -1,5 +1,6 @@
 import userService from '../services/users'
 import { useState, useEffect } from 'react'
+import User from '../components/User'
 
 const Users = ({user, setUser, following, setFollowing}) => {
 
@@ -17,43 +18,14 @@ const Users = ({user, setUser, following, setFollowing}) => {
 
     /* getting array of who user is following */ 
     useEffect(() => {
-        const getUser = async () => {
-            const currentUser = await userService.getUser(user.username)
-            const whoUserIsFollowing = currentUser[0].following
-            setFollowing(whoUserIsFollowing)
+        const getWhoUserFollowing = async () => {
+            const userFollowing = await userService.getWhoUserIsFollowing(user.username)
+            setFollowing(userFollowing)
         } 
-        getUser()
+        getWhoUserFollowing()
     }, [])
 
     const filteredUsers = usersList.filter(user => user.name.toLowerCase().includes(searchParameter.toLowerCase()))
-
-    const User = ({ id, name, city}) => {
-
-        const addFollow = async () => {
-            await userService.addFollow(id, user.token)
-            const updatedUser = await userService.getUser(user.username)
-            const updatedFollowing = updatedUser[0].following
-            setFollowing(updatedFollowing)
-        }
-
-        const removeFollow = async () => {
-            await userService.removeFollow(id, user.token)
-            const updatedUser = await userService.getUser(user.username)
-            const updatedFollowing = updatedUser[0].following
-            setFollowing(updatedFollowing)
-        }
-
-        return (
-            <div className='user-on-users-list'>
-                <p>{name}</p>
-                <p>{city}</p>
-                {following.includes(id) 
-                ? <button className='unfollow-button' onClick={removeFollow}>Unfollow</button>
-                : <button className='follow-button' onClick={addFollow}>Follow</button>
-                }   
-            </div> 
-        )
-    }
 
     return (
         <div className='users-container'>
@@ -69,7 +41,7 @@ const Users = ({user, setUser, following, setFollowing}) => {
             </div> 
             {searchParameter.length > 0
             ? filteredUsers.map(person => person.id !== user.id 
-                ? <User key={person.id} id={person.id} name={person.name} city={person.city} /> 
+                ? <User key={person.id} id={person.id} name={person.name} city={person.city} user={user} following={following} setFollowing={setFollowing} /> 
                 : null)
             : <div></div>}
         </div> 

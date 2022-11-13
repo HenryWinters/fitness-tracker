@@ -338,6 +338,15 @@ code {
 .profile-title {
   display: flex; 
   align-items: center; 
+  text-decoration: none; 
+}
+
+.profile-title > h3 {
+  color: var(--color-1); 
+}
+
+.profile-title > h3:hover {
+  color: var(--color-5); 
 }
 
 .profile-picture {
@@ -580,6 +589,28 @@ code {
   border-radius: 50%; 
   border: 1px solid var(--border-color);
   box-shadow: var(--box-shadow-color) 0px 1px 4px;
+}
+
+.profile-follow-button, .profile-unfollow-button { 
+  border: 1px solid var(--border-color);
+  border-radius: 25px; 
+  padding: 5px 10px 5px 10px 
+}
+
+.profile-unfollow-button {
+  background-color: var(--color-4); 
+}
+
+.profile-follow-button {
+  background-color: var(--background-white);
+}
+
+.profile-unfollow-button:hover {
+  background-color: var(--background-white); 
+}
+
+.profile-follow-button:hover {
+  background-color: var(--color-4);
 }
 
 .follow-container {

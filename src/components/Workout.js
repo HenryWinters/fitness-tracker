@@ -4,6 +4,7 @@ import { format } from 'date-fns'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHandFist, faChevronDown, faChevronUp, faDumbbell, faDeleteLeft } from '@fortawesome/free-solid-svg-icons'
 import workoutService from '../services/workouts'
+import { NavLink } from 'react-router-dom'
 
 const Workout = ({workout, user, setWorkouts}) => {
     const [visible, setVisible] = useState(false)
@@ -40,10 +41,10 @@ const Workout = ({workout, user, setWorkouts}) => {
             <div>
                 <div className='workout-text-container'> 
                     <div className='workout-name-date-container'> 
-                        <div className='profile-title'> 
+                        <NavLink className='profile-title' to={`/profile/${workout.user[0].username}`}>
                             <FontAwesomeIcon className='profile-picture' style={workoutColor} icon={faDumbbell} />
                             <h3>{workout.user[0].name}</h3>
-                        </div> 
+                        </NavLink>
                         <p>{format(date, "PPPP 'at' p")}</p> 
                     </div> 
                     <h3>{workout.workoutTitle}</h3> 
