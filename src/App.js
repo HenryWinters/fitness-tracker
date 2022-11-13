@@ -46,7 +46,7 @@ function App() {
         <TopNav user={user} setNotification={setNotification} /> 
         <Routes>
           <Route path='/' element={<> </>} />
-          <Route path='home' element={<Home />} /> 
+          <Route path='home' element={<Home user={user} workouts={workouts} setWorkouts={setWorkouts} />} /> 
           <Route path='workouts/:username' element={<Workouts user={user} workouts={workouts} setWorkouts={setWorkouts} />} /> 
           <Route path='profile/:username' element={<Profile user={user} />} /> 
           <Route path='workout' element={<WorkoutForm />} />

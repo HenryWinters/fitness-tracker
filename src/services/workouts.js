@@ -17,6 +17,11 @@ const getUserWorkouts = async (username) => {
   return response.data  
 }
 
+const getUserAndFollowingWorkouts = async (username) => {
+  const response = await axios.get(baseUrl + '/' + username + '/all')
+  return response.data
+}
+
 const addWorkout = async (newObject) => {
   const config = {
     headers: { Authorization: token },
@@ -37,6 +42,7 @@ const exportedObject = {
   setToken, 
   getAll,
   getUserWorkouts,
+  getUserAndFollowingWorkouts,
   addWorkout, 
   deleteWorkout
 }
