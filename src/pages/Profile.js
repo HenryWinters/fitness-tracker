@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faDumbbell } from '@fortawesome/free-solid-svg-icons'
 import { format } from 'date-fns'
 import { FollowButton, UnfollowButton } from '../components/FollowButtons'
+import FollowListDisplay from '../components/FollowListDisplay'
 
 const Profile = ({ user, following, setFollowing }) => {
     const [userInformation, setUserInformation] = useState([])
@@ -20,7 +21,7 @@ const Profile = ({ user, following, setFollowing }) => {
             setUserInformation(userObject[0])
         } 
         getUser()
-    }, [username])
+    }, [username, following])
 
     /* getting array of who user is following */ 
     useEffect(() => {
@@ -96,6 +97,7 @@ const Profile = ({ user, following, setFollowing }) => {
                 <NavLink to={'/users'}>
                     <p>Add followers</p>
                 </NavLink>
+                <FollowListDisplay user={user} username={userInformation.username} followType='followers' following={following} setFollowing={setFollowing} />
             </div> 
         )
     }

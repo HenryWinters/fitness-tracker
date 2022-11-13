@@ -9,7 +9,9 @@ const User = ({ id, username, name, city, user, following, setFollowing}) => {
                 <p>{name}</p>
             </NavLink> 
             <p>{city}</p>
-            {following.includes(id) 
+            {id === user.id 
+            ? <></>
+            : following.includes(id) 
             ? <UnfollowButton className='unfollow-button' userToUnfollow={id} userToken={user.token} userUsername={user.username} setFollowingFunction={setFollowing} />
             : <FollowButton className='follow-button' userToFollow={id} userToken={user.token} userUsername={user.username} setFollowingFunction={setFollowing} />
             }   

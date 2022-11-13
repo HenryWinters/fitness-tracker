@@ -33,12 +33,12 @@ const getUsersFollowers = async (username) => {
 }
 
 const getUsersFollowingNames = async (username) => {
-    const response = await axios.get(baseUrl + '/' + username + '/following/names')
+    const response = await axios.get(baseUrl + '/' + username + '/following/info')
     return response.data
 }
 
 const getUsersFollowersNames = async (username) => {
-    const response = await axios.get(baseUrl + '/' + username + '/followers/names')
+    const response = await axios.get(baseUrl + '/' + username + '/followers/info')
     return response.data
 }
 
