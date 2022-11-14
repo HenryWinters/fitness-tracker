@@ -1,19 +1,27 @@
 import { useEffect, useState } from 'react'
 import userService from '../services/users'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faDumbbell } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faDumbbell, faXmarkCircle } from '@fortawesome/free-solid-svg-icons'
 import { format } from 'date-fns'
 import { FollowButton, UnfollowButton } from '../components/FollowButtons'
 import FollowListDisplay from '../components/FollowListDisplay'
 
 const Profile = ({ user, following, setFollowing }) => {
     const [userInformation, setUserInformation] = useState([])
+    const [visible, setVisible] = useState({ display: 'none' })
+    const [followType, setFollowType] = useState('')
 
     const params = useParams()
     const username = params.username
 
+    const location = useLocation()
+
+    const handleFollowListClose = () => {
+        setFollowType('')
+        setVisible({ display: 'none' })
+    }
     /*get user profile to view based on url parameter*/ 
     useEffect(() => {
         const getUser = async () => {
@@ -32,6 +40,11 @@ const Profile = ({ user, following, setFollowing }) => {
         getWhoUserFollowing()
     }, [])
 
+    useEffect(() => {
+        handleFollowListClose()
+    }, [location])
+
+
     if (userInformation.length !== 0) {
 
         const personalProfileCheck = () => user.username === params.username 
@@ -42,6 +55,16 @@ const Profile = ({ user, following, setFollowing }) => {
 
         const userIconColor = { 
             backgroundColor: `${userInformation.color}` 
+        }
+
+        const handleFollowersClick = () => { 
+            setFollowType('followers')
+            setVisible({ display: 'flex' })
+        }   
+        
+        const handleFollowingClick = () => {
+            setFollowType('following')
+            setVisible({ display: 'flex' })
         }
 
         return (
@@ -59,14 +82,14 @@ const Profile = ({ user, following, setFollowing }) => {
                     <p>Member since {format(date, "PPPP")}</p>
                 </div> 
                 <div className='follow-container'>
-                    <div>
+                    <button onClick={handleFollowersClick}>
                         <p>Followers</p> 
                         <p>{userInformation.followers.length}</p>
-                    </div> 
-                    <div> 
+                    </button> 
+                    <button onClick={handleFollowingClick}> 
                         <p>Following</p>
                         <p>{userInformation.following.length}</p> 
-                    </div> 
+                    </button> 
                 </div>
                 <div className='profile-stats-container'> 
                     <div>
@@ -97,7 +120,11 @@ const Profile = ({ user, following, setFollowing }) => {
                 <NavLink to={'/users'}>
                     <p>Add followers</p>
                 </NavLink>
-                <FollowListDisplay user={user} username={userInformation.username} followType='followers' following={following} setFollowing={setFollowing} />
+                <div className='follow-list-display-container' style={visible}> 
+                    <FontAwesomeIcon className='close-follow-list-button' icon={faXmarkCircle} onClick={handleFollowListClose} /> 
+                    <h3>{userInformation.name}'s {followType.charAt(0).toUpperCase() + followType.slice(1)}</h3> 
+                    <FollowListDisplay username={userInformation.username} followType={followType} following={following} setFollowing={setFollowing} user={user} /> 
+                </div> 
             </div> 
         )
     }

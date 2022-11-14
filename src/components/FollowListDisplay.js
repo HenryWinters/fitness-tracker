@@ -9,16 +9,18 @@ const FollowListDisplay = ({ username, followType, following, setFollowing, user
     useEffect(() => {
         const getFollows = async () => {
             let display = []
-            followType === 'following' 
+            followType === ''
+            ? display = [] 
+            : followType === 'following' 
             ? display = await userService.getUsersFollowingNames(username)
             : display = await userService.getUsersFollowersNames(username)
             setFollowsToDisplay(display)
         } 
         getFollows()
-    }, [username, following])
+    }, [username, following, followType])
 
     return (
-        <div className='FollowListDisplay'> 
+        <div className='follow-list-display'> 
             {followsToDisplay.map(person => <User key={person.id} user={user} id={person.id} name={person.name} username={person.username} city={person.city} following={following} setFollowing={setFollowing} />)}
         </div> 
     )

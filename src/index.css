@@ -7,8 +7,8 @@
   --border-color: rgb(230, 230, 230);
   --box-shadow-color: rgba(0, 0, 0, 0.24);
   --background-white: #F7F9FB; 
-  --top-margin: 63px; 
-  --bottom-margin: 70px; 
+  --top-margin: 56px; 
+  --bottom-margin: 66px; 
 }
 
 body {
@@ -181,7 +181,7 @@ code {
   position: fixed; 
   top: 0; 
   width: 100%; 
-  height: 62px; 
+  height: 55px; 
   display: flex; 
   justify-content: space-between;
   align-items: center; 
@@ -222,6 +222,7 @@ code {
   position: fixed; 
   bottom: 0; 
   width: 100%; 
+  height: 55px; 
   padding-bottom: 0px; 
   padding-top: 10px; 
   display: flex; 
@@ -628,6 +629,17 @@ code {
   justify-content: center; 
 }
 
+.follow-container > button { 
+  border: 0; 
+  padding: 0; 
+  background-color: inherit; 
+}
+
+.follow-container > button:hover { 
+  color: var(--color-5); 
+  cursor: pointer; 
+}
+
 .profile-stats-container {
   display: flex; 
   justify-content: space-evenly; 
@@ -659,6 +671,43 @@ code {
   color: var(--color-5); 
   cursor: pointer; 
 }
+
+.follow-list-display-container { 
+  position: absolute; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  z-index: 1; 
+  width: 300px; 
+  min-height: 300px; 
+  height: auto; 
+  max-height: calc(99% - (var(--bottom-margin) + var(--top-margin))); 
+  margin: auto;
+  left: 0; 
+  right: 0;
+  top: 50%; 
+  transform: translateY(-50%);
+  padding-left: 10px;
+  padding-right: 10px; 
+  background-color: var(--color-3);  
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow-color) 0px 1px 4px; 
+  overflow-y: auto; 
+  overflow-x: hidden; 
+}
+
+.close-follow-list-button { 
+  position: absolute; 
+  font-size: 1.5em; 
+  left: 5px; 
+  top: 5px; 
+}
+
+.close-follow-list-button:hover { 
+  color: var(--color-5);
+  cursor: pointer; 
+}
+
 /* profile end */ 
 
 /* users page start */

@@ -18,7 +18,7 @@ const getUserWorkouts = async (username) => {
 }
 
 const getUserAndFollowingWorkouts = async (username) => {
-  const response = await axios.get(baseUrl + '/' + username + '/all')
+  const response = await axios.get(baseUrl + '/' + username + '/feed')
   return response.data
 }
 
