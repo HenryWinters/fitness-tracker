@@ -12,8 +12,8 @@ const User = ({ id, username, name, city, user, following, setFollowing}) => {
             {id === user.id 
             ? <></>
             : following.includes(id) 
-            ? <UnfollowButton className='unfollow-button' userToUnfollow={id} userToken={user.token} userUsername={user.username} setFollowingFunction={setFollowing} />
-            : <FollowButton className='follow-button' userToFollow={id} userToken={user.token} userUsername={user.username} setFollowingFunction={setFollowing} />
+            ? <UnfollowButton className='unfollow-button' userToUnfollow={id} userToken={user.token} userUsername={user.username} setFollowing={setFollowing} />
+            : <FollowButton className='follow-button' userToFollow={id} userToken={user.token} userUsername={user.username} setFollowing={setFollowing} />
             }   
         </div> 
     )

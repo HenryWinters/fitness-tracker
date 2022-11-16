@@ -75,8 +75,8 @@ const Profile = ({ user, following, setFollowing }) => {
                     {personalProfileCheck()
                     ? <></> 
                     : followingCheck()
-                    ? <UnfollowButton className='profile-unfollow-button' userToUnfollow={userInformation.id} userToken={user.token} userUsername={user.username} setFollowingFunction={setFollowing} /> 
-                    : <FollowButton className='profile-follow-button' userToFollow={userInformation.id} userToken={user.token} userUsername={user.username} setFollowingFunction={setFollowing} />}
+                    ? <UnfollowButton className='profile-unfollow-button' userToUnfollow={userInformation.id} userToken={user.token} userUsername={user.username} setFollowing={setFollowing} /> 
+                    : <FollowButton className='profile-follow-button' userToFollow={userInformation.id} userToken={user.token} userUsername={user.username} setFollowing={setFollowing} />}
                     <p>{userInformation.city}</p>
                     <p>{userInformation.bio}</p>
                     <p>Member since {format(date, "PPPP")}</p>

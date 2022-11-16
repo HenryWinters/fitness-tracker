@@ -1,12 +1,12 @@
 import userService from '../services/users'
 
-export const FollowButton = ({userToFollow, userToken, userUsername, setFollowingFunction, className}) => {
+export const FollowButton = ({userToFollow, userToken, userUsername, setFollowing, className}) => {
 
     const addFollow = async () => {
         await userService.addFollow(userToFollow, userToken)
         const updatedUser = await userService.getUser(userUsername)
         const updatedFollowing = updatedUser[0].following
-        setFollowingFunction(updatedFollowing)
+        setFollowing(updatedFollowing)
     }
 
     return (
@@ -14,13 +14,13 @@ export const FollowButton = ({userToFollow, userToken, userUsername, setFollowin
     )
 }
 
-export const UnfollowButton = ({userToUnfollow, userToken, userUsername, setFollowingFunction, className}) => {
+export const UnfollowButton = ({userToUnfollow, userToken, userUsername, setFollowing, className}) => {
 
     const removeFollow = async () => {
         await userService.removeFollow(userToUnfollow, userToken)
         const updatedUser = await userService.getUser(userUsername)
         const updatedFollowing = updatedUser[0].following
-        setFollowingFunction(updatedFollowing)
+        setFollowing(updatedFollowing)
     }
 
     return (

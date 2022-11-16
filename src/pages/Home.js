@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 import Workout from '../components/Workout'
 import workoutService from '../services/workouts'
+import userService from '../services/users'
 
-const Home = ({ user, workouts, setWorkouts }) => {
+const Home = ({ user, workouts, setWorkouts, likes, setLikes }) => {
 
     useEffect(() => {
         const getWorkouts = async () => {
@@ -17,7 +18,7 @@ const Home = ({ user, workouts, setWorkouts }) => {
         return (
             <div className='workouts-container-profile'>
                 {workouts.map(workout => 
-                    <Workout key={workout.id} workout={workout} user={user} setWorkouts={setWorkouts}/> 
+                    <Workout key={workout.id} workout={workout} user={user} setWorkouts={setWorkouts} likes={likes} setLikes={setLikes} /> 
                 )}
             </div> 
         )

@@ -27,6 +27,11 @@ const getWhoUserIsFollowing = async (username) => {
     return response.data
 }
 
+const getWhoUserIsFollowingAndLikes = async (username) => {
+    const response = await axios.get(baseUrl + '/' + username + '/following/likes')
+    return response.data
+}
+
 const getUsersFollowers = async (username) => {
     const response = await axios.get(baseUrl + '/' + username + '/followers')
     return response.data
@@ -65,6 +70,7 @@ const exportedObject = {
     addFollow, 
     removeFollow,
     getWhoUserIsFollowing,
+    getWhoUserIsFollowingAndLikes,
     getUsersFollowers, 
     getUsersFollowingNames, 
     getUsersFollowersNames,

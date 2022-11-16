@@ -4,10 +4,13 @@ import { format } from 'date-fns'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHandFist, faChevronDown, faChevronUp, faDumbbell, faDeleteLeft } from '@fortawesome/free-solid-svg-icons'
 import workoutService from '../services/workouts'
+import userService from '../services/users'
 import { NavLink } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
-const Workout = ({workout, user, setWorkouts}) => {
+const Workout = ({ workout, user, setWorkouts, likes, setLikes }) => {
     const [visible, setVisible] = useState(false)
+    const location = useLocation()
 
     const hideWhenVisible = {
         display: visible ? 'none' : 'block',
@@ -28,9 +31,22 @@ const Workout = ({workout, user, setWorkouts}) => {
         event.preventDefault() 
         if (window.confirm(`Remove ${workout.workoutTitle}?`)) {
             await workoutService.deleteWorkout(workout.id)
-            const updatedUserWorkoutList = await workoutService.getUserWorkouts(user.username)
-            setWorkouts(updatedUserWorkoutList)
+            let updatedWorkoutList = []
+            location.pathname === '/home'  
+            ? updatedWorkoutList = await workoutService.getUserAndFollowingWorkouts(user.username)
+            : updatedWorkoutList = await workoutService.getUserWorkouts(user.username)
+            setWorkouts(updatedWorkoutList)
         }
+    }
+
+    const handleAddLike = async (event) => {
+        event.preventDefault() 
+        await workoutService.addLike(workout.id)
+        setLikes([...workout.id])
+    }
+
+    const handleRemoveLike = async (event) => {
+        event.preventDefault()
     }
 
     const WorkoutDetails = () => {
@@ -76,7 +92,7 @@ const Workout = ({workout, user, setWorkouts}) => {
                         <p>Reps</p> 
                     </div> 
                 </div> 
-                <button className='fist-bump'>
+                <button className='fist-bump' onClick={handleAddLike}>
                     <FontAwesomeIcon className='left-fist-bump' icon={faHandFist} rotation={90} />
                     <FontAwesomeIcon icon={faHandFist} rotation={270} />
                     <p>{workout.likeCount}</p>
