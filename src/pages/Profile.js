@@ -32,13 +32,13 @@ const Profile = ({ user, following, setFollowing }) => {
     }, [username, following])
 
     /* getting array of who user is following */ 
-    useEffect(() => {
+    /*useEffect(() => {
         const getWhoUserFollowing = async () => {
             const userFollowing = await userService.getWhoUserIsFollowing(user.username)
             setFollowing(userFollowing)
         } 
         getWhoUserFollowing()
-    }, [])
+    }, [])*/
 
     useEffect(() => {
         handleFollowListClose()

@@ -46,6 +46,19 @@ const addLike = async (id) => {
   return response.data
 }
 
+const removeLike = async (id) => {
+  const config = {
+    headers: { Authorization: token }, 
+  }
+  const response = await axios.patch(baseUrl + '/unlike/' + id, {id}, config)
+  return response.data
+}
+
+const getLikes = async (id) => {
+  const response = await axios.get(baseUrl + '/' + id + '/likes')
+  return response.data
+}
+
 const exportedObject = {
   setToken, 
   getAll,
@@ -53,7 +66,9 @@ const exportedObject = {
   getUserAndFollowingWorkouts,
   addWorkout, 
   deleteWorkout, 
-  addLike
+  addLike, 
+  removeLike, 
+  getLikes
 }
 
 export default exportedObject

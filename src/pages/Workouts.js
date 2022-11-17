@@ -14,7 +14,7 @@ const Workouts = ({ user, workouts, setWorkouts, likes, setLikes }) => {
             setWorkouts(userWorkouts)
         } 
         getWorkouts()
-    }, [username])
+    }, [username, likes])
 
     if (workouts.length >= 1) {
 

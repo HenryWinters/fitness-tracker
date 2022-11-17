@@ -40,7 +40,7 @@ function App() {
       } 
       getUserInfo()
     }
-  }, [])
+  }, [user])
   
   if (user === null) {
     return (

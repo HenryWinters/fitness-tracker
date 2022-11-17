@@ -1,27 +1,30 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ExerciseTable from './ExerciseTable'
 import { format } from 'date-fns'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHandFist, faChevronDown, faChevronUp, faDumbbell, faDeleteLeft } from '@fortawesome/free-solid-svg-icons'
+import { faHandFist, faChevronDown, faChevronUp, faDumbbell, faDeleteLeft, faXmarkCircle } from '@fortawesome/free-solid-svg-icons'
 import workoutService from '../services/workouts'
 import userService from '../services/users'
 import { NavLink } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
+import LikesListDisplay from './LikeListDisplay'
 
 const Workout = ({ workout, user, setWorkouts, likes, setLikes }) => {
     const [visible, setVisible] = useState(false)
+    const [liked, setLiked] = useState(likes.includes(workout.id) ? true : false)
+    const [workoutLikeCount, setWorkoutLikeCount] = useState(workout.likeCount)
+    const [likesVisible, setLikesVisible] = useState({ display: 'none' })
     const location = useLocation()
 
-    const hideWhenVisible = {
-        display: visible ? 'none' : 'block',
-    }
-    const showWhenVisible = { 
-        display: visible ? '' : 'none' 
-    }
+    const hideWhenVisible = { display: visible ? 'none' : 'block' }
+    const showWhenVisible = { display: visible ? '' : 'none' }
 
-    const workoutColor = { 
-        backgroundColor: `${workout.user[0].color}` 
-    }
+    let likeColor = {}
+    liked
+    ? likeColor = { color: 'var(--color-5)' }
+    : likeColor = { color: 'black' }
+
+    const workoutColor = { backgroundColor: `${workout.user[0].color}` }
 
     const toggleVisibility = () => {
         setVisible(!visible)
@@ -41,13 +44,32 @@ const Workout = ({ workout, user, setWorkouts, likes, setLikes }) => {
 
     const handleAddLike = async (event) => {
         event.preventDefault() 
-        await workoutService.addLike(workout.id)
-        setLikes([...workout.id])
+        const response = await workoutService.addLike(workout.id)
+        setLikes(response.likes)
+        setWorkoutLikeCount(response.likeCount)
+        setLiked(true)
     }
 
     const handleRemoveLike = async (event) => {
         event.preventDefault()
+        await workoutService.removeLike(workout.id)
+        const updatedLikes = likes.filter(id => id !== workout.id)
+        setLikes(updatedLikes)
+        setWorkoutLikeCount(workoutLikeCount - 1)
+        setLiked(false) 
     }
+
+    const handleLikesClick = () => { 
+        setLikesVisible({ display: 'flex' })
+    }   
+
+    const handleLikesListClose = () => {
+        setLikesVisible({ display: 'none' })
+    }
+
+    useEffect(() => {
+        handleLikesListClose()
+    }, [location])
 
     const WorkoutDetails = () => {
 
@@ -92,11 +114,13 @@ const Workout = ({ workout, user, setWorkouts, likes, setLikes }) => {
                         <p>Reps</p> 
                     </div> 
                 </div> 
-                <button className='fist-bump' onClick={handleAddLike}>
-                    <FontAwesomeIcon className='left-fist-bump' icon={faHandFist} rotation={90} />
-                    <FontAwesomeIcon icon={faHandFist} rotation={270} />
-                    <p>{workout.likeCount}</p>
-                </button> 
+                <div className='fist-bump'>
+                    <button style={likeColor} onClick={liked ? handleRemoveLike : handleAddLike}>
+                        <FontAwesomeIcon className='left-fist-bump' icon={faHandFist} rotation={90} />
+                        <FontAwesomeIcon icon={faHandFist} rotation={270} />
+                    </button>
+                    <p onClick={handleLikesClick}>{workoutLikeCount} {workoutLikeCount === 1 ? 'fist bump' : 'fist bumps'}</p>
+                </div> 
                 {user.id === workout.user[0].id ? 
                 <button className='delete-workout-button' onClick={handleWorkoutDelete}>
                     <FontAwesomeIcon icon={faDeleteLeft} />
@@ -132,6 +156,11 @@ const Workout = ({ workout, user, setWorkouts, likes, setLikes }) => {
                     actions={false}
                 />
             </div>
+            <div className='follow-list-display-container' style={likesVisible}> 
+                <FontAwesomeIcon className='close-follow-list-button' icon={faXmarkCircle} onClick={handleLikesListClose} /> 
+                <h3>Fist bumps</h3> 
+                <LikesListDisplay likes={likes} id={workout.id} /> 
+            </div> 
         </div>
     )
 }
