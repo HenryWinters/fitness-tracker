@@ -11,8 +11,7 @@ import LikesListDisplay from './LikeListDisplay'
 
 const Workout = ({ workout, user, setWorkouts, likes, setLikes }) => {
     const [visible, setVisible] = useState(false)
-    const [liked, setLiked] = useState(likes.includes(workout.id) ? true : false)
-    const [workoutLikeCount, setWorkoutLikeCount] = useState(workout.likeCount)
+    const [liked, setLiked] = useState(workout.likes.includes(user.id) ? true : false)
     const [likesVisible, setLikesVisible] = useState({ display: 'none' })
     const location = useLocation()
 
@@ -45,8 +44,7 @@ const Workout = ({ workout, user, setWorkouts, likes, setLikes }) => {
     const handleAddLike = async (event) => {
         event.preventDefault() 
         const response = await workoutService.addLike(workout.id)
-        setLikes(response.likes)
-        setWorkoutLikeCount(response.likeCount)
+        setLikes([...likes, workout.id])
         setLiked(true)
     }
 
@@ -55,8 +53,7 @@ const Workout = ({ workout, user, setWorkouts, likes, setLikes }) => {
         await workoutService.removeLike(workout.id)
         const updatedLikes = likes.filter(id => id !== workout.id)
         setLikes(updatedLikes)
-        setWorkoutLikeCount(workoutLikeCount - 1)
-        setLiked(false) 
+        setLiked(false)
     }
 
     const handleLikesClick = () => { 
@@ -119,7 +116,7 @@ const Workout = ({ workout, user, setWorkouts, likes, setLikes }) => {
                         <FontAwesomeIcon className='left-fist-bump' icon={faHandFist} rotation={90} />
                         <FontAwesomeIcon icon={faHandFist} rotation={270} />
                     </button>
-                    <p onClick={handleLikesClick}>{workoutLikeCount} {workoutLikeCount === 1 ? 'fist bump' : 'fist bumps'}</p>
+                    <p onClick={handleLikesClick}>{workout.likeCount} {workout.likeCount === 1 ? 'fist bump' : 'fist bumps'}</p>
                 </div> 
                 {user.id === workout.user[0].id ? 
                 <button className='delete-workout-button' onClick={handleWorkoutDelete}>
