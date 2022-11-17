@@ -25,7 +25,7 @@ const Workout = ({ workout, user, setWorkouts, likes, setLikes }) => {
     : likeColor = { color: 'black' }
 
     const workoutColor = { backgroundColor: `${workout.user[0].color}` }
-
+    
     const toggleVisibility = () => {
         setVisible(!visible)
     }
