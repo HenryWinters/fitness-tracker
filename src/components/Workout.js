@@ -9,9 +9,9 @@ import { NavLink } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import LikesListDisplay from './LikeListDisplay'
 
-const Workout = ({ workout, user, setWorkouts, likes, setLikes }) => {
+const Workout = ({ workout, user, setWorkouts }) => {
+    const [liked, setLiked] = useState(false)
     const [visible, setVisible] = useState(false)
-    const [liked, setLiked] = useState(workout.likes.includes(user.id) ? true : false)
     const [likesVisible, setLikesVisible] = useState({ display: 'none' })
     const location = useLocation()
 
@@ -19,7 +19,7 @@ const Workout = ({ workout, user, setWorkouts, likes, setLikes }) => {
     const showWhenVisible = { display: visible ? '' : 'none' }
 
     let likeColor = {}
-    liked
+    workout.likes.includes(user.id)
     ? likeColor = { color: 'var(--color-5)' }
     : likeColor = { color: 'black' }
 
@@ -44,16 +44,11 @@ const Workout = ({ workout, user, setWorkouts, likes, setLikes }) => {
     const handleAddLike = async (event) => {
         event.preventDefault() 
         const response = await workoutService.addLike(workout.id)
-        setLikes([...likes, workout.id])
-        setLiked(true)
     }
 
     const handleRemoveLike = async (event) => {
         event.preventDefault()
-        await workoutService.removeLike(workout.id)
-        const updatedLikes = likes.filter(id => id !== workout.id)
-        setLikes(updatedLikes)
-        setLiked(false)
+        const response = await workoutService.removeLike(workout.id)
     }
 
     const handleLikesClick = () => { 
@@ -112,7 +107,7 @@ const Workout = ({ workout, user, setWorkouts, likes, setLikes }) => {
                     </div> 
                 </div> 
                 <div className='fist-bump'>
-                    <button style={likeColor} onClick={liked ? handleRemoveLike : handleAddLike}>
+                    <button style={likeColor} onClick={workout.likes.includes(user.id) ? handleRemoveLike : handleAddLike}>
                         <FontAwesomeIcon className='left-fist-bump' icon={faHandFist} rotation={90} />
                         <FontAwesomeIcon icon={faHandFist} rotation={270} />
                     </button>
@@ -156,7 +151,7 @@ const Workout = ({ workout, user, setWorkouts, likes, setLikes }) => {
             <div className='follow-list-display-container' style={likesVisible}> 
                 <FontAwesomeIcon className='close-follow-list-button' icon={faXmarkCircle} onClick={handleLikesListClose} /> 
                 <h3>Fist bumps</h3> 
-                <LikesListDisplay likes={likes} id={workout.id} /> 
+                <LikesListDisplay likes={workout.likes} id={workout.id} /> 
             </div> 
         </div>
     )

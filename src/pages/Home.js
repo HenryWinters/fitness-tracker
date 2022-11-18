@@ -3,7 +3,7 @@ import Workout from '../components/Workout'
 import workoutService from '../services/workouts'
 import userService from '../services/users'
 
-const Home = ({ user, workouts, setWorkouts, likes, setLikes }) => {
+const Home = ({ user, workouts, setWorkouts }) => {
 
     useEffect(() => {
         const getWorkouts = async () => {
@@ -11,14 +11,14 @@ const Home = ({ user, workouts, setWorkouts, likes, setLikes }) => {
             setWorkouts(userAndFollowingWorkouts)
         } 
         getWorkouts()
-    }, [user.username, likes])
+    }, [user.username])
 
     if (workouts.length >= 1) {
 
         return (
             <div className='workouts-container-profile'>
                 {workouts.map(workout => 
-                    <Workout key={workout.id} workout={workout} user={user} setWorkouts={setWorkouts} likes={likes} setLikes={setLikes} /> 
+                    <Workout key={workout.id} workout={workout} user={user} setWorkouts={setWorkouts} /> 
                 )}
             </div> 
         )

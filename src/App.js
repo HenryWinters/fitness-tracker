@@ -18,8 +18,7 @@ function App() {
   const [user, setUser] = useState(null)
   const [workouts, setWorkouts] = useState([])
   const [notification, setNotification] = useState({ message: null, type: null })
-  const [following, setFollowing] = useState([])
-  const [likes, setLikes] = useState([])
+  const [following, setFollowing] = useState([]) 
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedFitnessAppUser')
@@ -34,9 +33,8 @@ function App() {
   useEffect(() => {
     if (user) {
       const getUserInfo = async () => {
-        const response = await userService.getWhoUserIsFollowingAndLikes(user.username)
-        setFollowing(response.following)
-        setLikes(response.likes)
+        const response = await userService.getWhoUserIsFollowing(user.username)
+        setFollowing(response)
       } 
       getUserInfo()
     }
@@ -58,8 +56,8 @@ function App() {
         <TopNav user={user} setNotification={setNotification} /> 
         <Routes>
           <Route path='/' element={<> </>} />
-          <Route path='home' element={<Home user={user} workouts={workouts} setWorkouts={setWorkouts} likes={likes} setLikes={setLikes} />} /> 
-          <Route path='workouts/:username' element={<Workouts user={user} workouts={workouts} setWorkouts={setWorkouts} likes={likes} setLikes={setLikes} />} /> 
+          <Route path='home' element={<Home user={user} workouts={workouts} setWorkouts={setWorkouts} />} /> 
+          <Route path='workouts/:username' element={<Workouts user={user} workouts={workouts} setWorkouts={setWorkouts} />} /> 
           <Route path='profile/:username' element={<Profile user={user} following={following} setFollowing={setFollowing} />} /> 
           <Route path='workout' element={<WorkoutForm />} />
           <Route path='users' element={<Users user={user} setUser={setUser} following={following} setFollowing={setFollowing} />} />

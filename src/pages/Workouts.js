@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import Workout from '../components/Workout'
 import workoutService from '../services/workouts'
 
-const Workouts = ({ user, workouts, setWorkouts, likes, setLikes }) => {
+const Workouts = ({ user, workouts, setWorkouts }) => {
 
     const params = useParams()
     const username = params.username
@@ -14,14 +14,14 @@ const Workouts = ({ user, workouts, setWorkouts, likes, setLikes }) => {
             setWorkouts(userWorkouts)
         } 
         getWorkouts()
-    }, [username, likes])
+    }, [username])
 
     if (workouts.length >= 1) {
 
         return (
             <div className='workouts-container-profile'>
                 {workouts.map(workout => 
-                    <Workout key={workout.id} workout={workout} user={user} setWorkouts={setWorkouts} likes={likes} setLikes={setLikes} /> 
+                    <Workout key={workout.id} workout={workout} user={user} setWorkouts={setWorkouts} /> 
                 )}
             </div> 
         )
