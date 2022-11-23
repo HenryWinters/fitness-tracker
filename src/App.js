@@ -54,10 +54,11 @@ function App() {
     return (
       <div className='website-container'>
         <TopNav user={user} setNotification={setNotification} /> 
+        <Notification notification={notification} />
         <Routes>
           <Route path='/' element={<> </>} />
-          <Route path='home' element={<Home user={user} workouts={workouts} setWorkouts={setWorkouts} />} /> 
-          <Route path='workouts/:username' element={<Workouts user={user} workouts={workouts} setWorkouts={setWorkouts} />} /> 
+          <Route path='home' element={<Home user={user} workouts={workouts} setWorkouts={setWorkouts} following={following} setFollowing={setFollowing} />} /> 
+          <Route path='workouts/:username' element={<Workouts user={user} workouts={workouts} setWorkouts={setWorkouts} following={following} setFollowing={setFollowing} />} /> 
           <Route path='profile/:username' element={<Profile user={user} following={following} setFollowing={setFollowing} />} /> 
           <Route path='workout' element={<WorkoutForm />} />
           <Route path='users' element={<Users user={user} setUser={setUser} following={following} setFollowing={setFollowing} />} />

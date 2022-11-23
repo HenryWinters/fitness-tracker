@@ -1,7 +1,7 @@
 import '../index.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons'
 
 const TopNav = ({user, setNotification}) => {
     const location = useLocation()
@@ -18,9 +18,14 @@ const TopNav = ({user, setNotification}) => {
         }, 5000)
     }
 
-    const addWorkout = (event) => {
+    const navigateToAddWorkout = (event) => {
         event.preventDefault()
         navigate('/workout')
+    }
+
+    const navigateToUsers = (event) => {
+        event.preventDefault()
+        navigate('/users')
     }
 
     const editPathName = (string) => {
@@ -30,12 +35,18 @@ const TopNav = ({user, setNotification}) => {
 
     return (
         <div id='top-nav-bar'>
-            <button className='top-nav-button' onClick={addWorkout}>
-                <FontAwesomeIcon icon={faPlus} />
-                <p>Add Workout</p>
-            </button> 
+            <div className='top-nav-left-actions top-nav-section'>
+                <button className='top-nav-button' onClick={navigateToAddWorkout}>
+                    <FontAwesomeIcon icon={faPlus} />
+                    <p>Add Workout</p>
+                </button> 
+                <button className='top-nav-button' onClick={navigateToUsers}> 
+                    <FontAwesomeIcon icon={faUser} />
+                    <p>Find Users</p>
+                </button> 
+            </div> 
             <h1>{editPathName(location.pathname)}</h1>
-            <button className='top-nav-button' onClick={handleLogOut}>
+            <button className='top-nav-button top-nav-section' onClick={handleLogOut}>
                 <p>Log Out</p> 
                 <FontAwesomeIcon icon={faRightFromBracket} />
             </button> 

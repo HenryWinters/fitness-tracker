@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import Workout from '../components/Workout'
 import workoutService from '../services/workouts'
 
-const Workouts = ({ user, workouts, setWorkouts }) => {  
+const Workouts = ({ user, workouts, setWorkouts, following, setFollowing }) => {  
 
     const params = useParams()
     const username = params.username
@@ -21,7 +21,7 @@ const Workouts = ({ user, workouts, setWorkouts }) => {
         return (
             <div className='workouts-container-profile'>
                 {workouts.map(workout => 
-                    <Workout key={workout.id} workout={workout} user={user} setWorkouts={setWorkouts} /> 
+                    <Workout key={workout.id} workout={workout} user={user} setWorkouts={setWorkouts} following={following} setFollowing={setFollowing} /> 
                 )}
             </div> 
         )

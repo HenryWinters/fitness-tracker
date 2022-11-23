@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import LikesListDisplay from './LikeListDisplay'
 
-const Workout = ({ workout, user, setWorkouts }) => {
+const Workout = ({ workout, user, setWorkouts, following, setFollowing }) => {
     const [liked, setLiked] = useState(workout.likes.includes(user.id) ? true : false)
     const [likeCount, setLikeCount] = useState(workout.likeCount)
     const [visible, setVisible] = useState(false)
@@ -163,7 +163,7 @@ const Workout = ({ workout, user, setWorkouts }) => {
             <div className='follow-list-display-container' style={likesVisible}> 
                 <FontAwesomeIcon className='close-follow-list-button' icon={faXmarkCircle} onClick={handleLikesListClose} /> 
                 <h3>Fist bumps</h3> 
-                <LikesListDisplay likes={workout.likes} id={workout.id} /> 
+                <LikesListDisplay likes={workout.likes} id={workout.id} user={user} following={following} setFollowing={setFollowing} /> 
             </div> 
             : 
             <></>}
