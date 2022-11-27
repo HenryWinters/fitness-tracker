@@ -13,6 +13,7 @@ import Profile from './pages/Profile'
 import WorkoutForm from './pages/WorkoutForm'
 import Register from './pages/Register'
 import Users from './pages/Users'
+import EditProfile from './pages/EditProfile'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -62,6 +63,7 @@ function App() {
           <Route path='profile/:username' element={<Profile user={user} following={following} setFollowing={setFollowing} />} /> 
           <Route path='workout' element={<WorkoutForm />} />
           <Route path='users' element={<Users user={user} setUser={setUser} following={following} setFollowing={setFollowing} />} />
+          <Route path='profile/edit' element={<EditProfile user={user} setNotification={setNotification} />} />
         </Routes>
         <BottomNav user={user} /> 
       </div> 

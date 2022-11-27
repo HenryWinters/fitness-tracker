@@ -58,6 +58,14 @@ const removeFollow = async (id) => {
     return response.data
 }
 
+const editUser = async (id, editedUser) => {
+    const config = {
+        headers: { Authorization: token }, 
+    }
+    const response = await axios.patch(baseUrl + '/edit/' + id, editedUser, config) 
+    return response.data
+}
+
 const exportedObject = {
     addUser, 
     getUser, 
@@ -68,7 +76,8 @@ const exportedObject = {
     getUsersFollowers, 
     getUsersFollowingNames, 
     getUsersFollowersNames,
-    setToken
+    setToken, 
+    editUser
 }
 
 export default exportedObject

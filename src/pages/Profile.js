@@ -117,9 +117,6 @@ const Profile = ({ user, following, setFollowing }) => {
                         : <p>View {userInformation.name}'s workouts</p>}
                     </NavLink>
                 </div> 
-                <NavLink to={'/users'}>
-                    <p>Add followers</p>
-                </NavLink>
                 <div className='follow-list-display-container' style={visible}> 
                     <FontAwesomeIcon className='close-follow-list-button' icon={faXmarkCircle} onClick={handleFollowListClose} /> 
                     <h3>{userInformation.name}'s {followType.charAt(0).toUpperCase() + followType.slice(1)}</h3> 
