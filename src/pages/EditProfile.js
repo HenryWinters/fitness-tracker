@@ -56,7 +56,7 @@ const EditProfile = ({ user, setNotification }) => {
 
     return (
         <div className='register-form-container'> 
-            <NavLink id='login-link' to={`/profile/${user.username}`}>
+            <NavLink id='back-to-profile-link' to={`/profile/${user.username}`}>
                 <FontAwesomeIcon icon={faChevronLeft} />
                 <p>Back to profile page</p> 
             </NavLink>

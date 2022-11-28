@@ -1,7 +1,7 @@
 import '../index.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faRightFromBracket, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 const TopNav = ({user, setNotification}) => {
     const location = useLocation()
@@ -35,20 +35,20 @@ const TopNav = ({user, setNotification}) => {
 
     return (
         <div id='top-nav-bar'>
-            <div className='top-nav-left-actions top-nav-section'>
+            <div className='top-nav-left-actions'>
                 <button className='top-nav-button' onClick={navigateToAddWorkout}>
-                    <FontAwesomeIcon icon={faPlus} />
-                    <p>Add Workout</p>
+                    <FontAwesomeIcon icon={faPlus} className='top-nav-icon'/>
+                    <p>Workout</p>
                 </button> 
                 <button className='top-nav-button' onClick={navigateToUsers}> 
-                    <FontAwesomeIcon icon={faUser} />
-                    <p>Find Users</p>
+                    <FontAwesomeIcon icon={faMagnifyingGlass} className='top-nav-icon' />
+                    <p>Users</p>
                 </button> 
             </div> 
             <h1>{editPathName(location.pathname)}</h1>
-            <button className='top-nav-button top-nav-section' onClick={handleLogOut}>
+            <button className='top-nav-button top-nav-right-actions' onClick={handleLogOut}>
                 <p>Log Out</p> 
-                <FontAwesomeIcon icon={faRightFromBracket} />
+                <FontAwesomeIcon icon={faRightFromBracket} className='top-nav-icon' />
             </button> 
         </div> 
     )

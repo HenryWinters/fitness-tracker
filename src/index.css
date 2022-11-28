@@ -114,6 +114,7 @@ code {
   flex-direction: column; 
   justify-content: center; 
   align-items: center; 
+  text-align: center; 
 }
 
 .register-input-container {
@@ -183,7 +184,6 @@ code {
   width: 100%; 
   height: 55px; 
   display: flex; 
-  justify-content: space-between;
   align-items: center; 
   font-size: 0.75em; 
   background-color: var(--color-3);
@@ -192,13 +192,26 @@ code {
   box-shadow: var(--box-shadow-color) 0px 1px 4px;
 }
 
-.top-nav-section { 
-  width: 150px; 
+#top-nav-bar > h1 {
+  position: absolute; 
+  left: 50%; 
+  transform: translateX(-50%);
+}
+
+.top-nav-left-actions { 
+  position: absolute; 
+  left: 20px; 
   display: flex; 
   justify-content: center; 
 }
 
+.top-nav-right-actions { 
+  position: absolute; 
+  right: 20px;  
+}
+
 .top-nav-button {
+  width: 60px; 
   display: flex; 
   justify-content: center; 
   align-items: center; 
@@ -217,6 +230,10 @@ code {
 .top-nav-button > p {
   margin-left: 5px; 
   margin-right: 5px; 
+}
+
+.top-nav-icon { 
+  font-size: 1.25em; 
 }
 
 /* top navbar end */ 
@@ -586,6 +603,28 @@ code {
 
 /* profile start */ 
 
+.edit-profile-link {
+  position: absolute; 
+  display: flex; 
+  align-items: center; 
+  right: 25px; 
+  top: calc(var(--top-margin) + 10px); 
+  text-decoration: none; 
+  color: inherit; 
+}
+
+.edit-profile-link:hover { 
+  color: var(--color-5); 
+}
+
+.edit-profile-link > p { 
+  margin-right: 5px; 
+}
+
+.edit-icon {
+  font-size: 1.25em;
+}
+
 .profile-heading-container {
   display: flex; 
   flex-direction: column; 
@@ -655,6 +694,7 @@ code {
   display: flex; 
   justify-content: space-evenly; 
   align-items: center; 
+  margin-top: 20px; 
 }
 
 .profile-stats-container > div {
@@ -667,6 +707,7 @@ code {
 .profile-workouts-link-container {
   display: flex; 
   justify-content: center; 
+  margin-top: 50px; 
 }
 
 .profile-workouts-link { 
@@ -778,3 +819,26 @@ code {
   border-radius: 25px; 
 }
 /* users page end */ 
+
+/* edit profile start */ 
+
+#back-to-profile-link {
+  position: absolute; 
+  top: calc(var(--top-margin) + 10px);
+  left: 20px; 
+  display: flex; 
+  align-items: center; 
+  text-decoration: none; 
+  color: var(--color-1);
+}
+
+#back-to-profile-link:hover { 
+  color: var(--color-5); 
+}
+
+#back-to-profile-link > p { 
+  margin-left: 5px; 
+}
+
+
+/* edit profile end */ 

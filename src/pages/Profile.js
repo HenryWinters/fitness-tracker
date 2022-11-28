@@ -3,12 +3,12 @@ import userService from '../services/users'
 import { useParams, useLocation } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faDumbbell, faXmarkCircle } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faDumbbell, faXmarkCircle, faEdit } from '@fortawesome/free-solid-svg-icons'
 import { format } from 'date-fns'
 import { FollowButton, UnfollowButton } from '../components/FollowButtons'
 import FollowListDisplay from '../components/FollowListDisplay'
 
-const Profile = ({ user, following, setFollowing }) => {
+const Profile = ({ user, following, setFollowing, setNotification }) => {
     const [userInformation, setUserInformation] = useState([])
     const [visible, setVisible] = useState({ display: 'none' })
     const [followType, setFollowType] = useState('')
@@ -26,7 +26,7 @@ const Profile = ({ user, following, setFollowing }) => {
     useEffect(() => {
         const getUser = async () => {
             const userObject = await userService.getUser(username)
-            setUserInformation(userObject[0])
+            setUserInformation(userObject[0]) 
         } 
         getUser()
     }, [username, following])
@@ -43,7 +43,6 @@ const Profile = ({ user, following, setFollowing }) => {
     useEffect(() => {
         handleFollowListClose()
     }, [location])
-
 
     if (userInformation.length !== 0) {
 
@@ -69,6 +68,12 @@ const Profile = ({ user, following, setFollowing }) => {
 
         return (
             <div>
+                {personalProfileCheck()
+                ? <NavLink to='/profile/edit' className='edit-profile-link'>
+                    <p>Edit profile</p> 
+                    <FontAwesomeIcon className='edit-icon' icon={faEdit} />
+                  </NavLink>  
+                : <></>}
                 <div className='profile-heading-container'>
                     <FontAwesomeIcon className='userIcon' icon={faUser} style={userIconColor} />
                     <h1>{userInformation.name}</h1>
