@@ -19,7 +19,7 @@ const LikesListDisplay = ({ likes, id, user, following, setFollowing }) => {
     if (likesToDisplay.length > 0) {
         
         return (
-            <div> 
+            <div className='follow-list-display'> 
                 {likesToDisplay.map(person => 
                     <User key={person.id} user={user} id={person.id} name={person.name} username={person.username} city={person.city} following={following} setFollowing={setFollowing} />
                 )}

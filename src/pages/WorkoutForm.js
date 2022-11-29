@@ -6,7 +6,7 @@ import ExerciseTable from '../components/ExerciseTable'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faTrash, faCloudArrowUp } from '@fortawesome/free-solid-svg-icons'
 
-const WorkoutForm = () => {
+const WorkoutForm = ({ setNotification }) => {
     const navigate = useNavigate()
     const ref = useRef(null)
     
@@ -87,6 +87,10 @@ const WorkoutForm = () => {
             setWorkoutNote('')
             setWorkoutTime(date)
             setWorkout([])
+            setNotification({ message: `Saved ${workoutTitle}`, type: 'success' })
+            setTimeout(() => {
+                setNotification({ message: null, type: null })
+            }, 5000)
         } catch (exception) {
             console.log('error')
         }

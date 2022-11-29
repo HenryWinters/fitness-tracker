@@ -50,6 +50,7 @@ code {
   width: 100%;
   display: flex; 
   justify-content: center; 
+  text-align: center; 
 }
 
 .notification {
@@ -503,10 +504,44 @@ code {
   margin-left: 8px; 
 }
 
-.left-fist-bump {
+.left-fist {
   margin-left: 5px; 
   margin-right: 8px; 
+  rotate: 90deg;
 }
+
+.right-fist {
+  rotate: 270deg; 
+}
+
+.left-fist[bump='1'] { 
+  animation: bumpright 1s 1
+}
+
+.right-fist[bump='1'] {
+  animation: bumpleft 1s 1; 
+}
+
+@keyframes bumpright {
+  50% {
+    transform: translateY(-3px);
+    font-size: 1.1em; 
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes bumpleft {
+  50% {
+    transform: translateY(-3px);
+    font-size: 1.1em; 
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
 
 .delete-workout-button {
   position: absolute; 
@@ -522,6 +557,30 @@ code {
 .delete-workout-button:hover {
   color: var(--color-5);
   cursor: pointer; 
+}
+
+.like-list-display-container { 
+  position: absolute; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  z-index: 1; 
+  width: 300px; 
+  min-height: 95%; 
+  height: auto; 
+  max-height: 99%; 
+  margin: auto;
+  left: 0; 
+  right: 0;
+  top: 50%; 
+  transform: translateY(-50%);
+  padding-left: 10px;
+  padding-right: 10px; 
+  background-color: var(--color-3);  
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow-color) 0px 1px 4px; 
+  overflow-y: auto; 
+  overflow-x: hidden; 
 }
 
 /* workout end */ 
@@ -707,7 +766,7 @@ code {
 .profile-workouts-link-container {
   display: flex; 
   justify-content: center; 
-  margin-top: 50px; 
+  margin-top: 30px; 
 }
 
 .profile-workouts-link { 

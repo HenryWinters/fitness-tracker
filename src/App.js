@@ -58,10 +58,10 @@ function App() {
         <Notification notification={notification} />
         <Routes>
           <Route path='/' element={<> </>} />
-          <Route path='home' element={<Home user={user} workouts={workouts} setWorkouts={setWorkouts} following={following} setFollowing={setFollowing} />} /> 
-          <Route path='workouts/:username' element={<Workouts user={user} workouts={workouts} setWorkouts={setWorkouts} following={following} setFollowing={setFollowing} />} /> 
+          <Route path='home' element={<Home user={user} workouts={workouts} setWorkouts={setWorkouts} following={following} setFollowing={setFollowing} setNotification={setNotification} />} /> 
+          <Route path='workouts/:username' element={<Workouts user={user} workouts={workouts} setWorkouts={setWorkouts} following={following} setFollowing={setFollowing} setNotification={setNotification} />} /> 
           <Route path='profile/:username' element={<Profile user={user} following={following} setFollowing={setFollowing} />} /> 
-          <Route path='workout' element={<WorkoutForm />} />
+          <Route path='workout' element={<WorkoutForm setNotification={setNotification} />} />
           <Route path='users' element={<Users user={user} setUser={setUser} following={following} setFollowing={setFollowing} />} />
           <Route path='profile/edit' element={<EditProfile user={user} setNotification={setNotification} />} />
         </Routes>
