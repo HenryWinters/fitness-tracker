@@ -52,8 +52,9 @@ const Workouts = ({ user, workouts, setWorkouts, following, setFollowing, setNot
     } else {
         return (
             <div className='no-workouts-to-display-profile'> 
-                <p>No workouts yet! Click "Add Workout" to start your first log.</p> 
-                <FontAwesomeIcon icon={faDumbbell} /> 
+                <p>No workouts yet!</p>
+                <p>Click "+ Workout" to log your first lift or "Users" to start following other users</p>
+                <FontAwesomeIcon icon={faDumbbell} className='no-workouts-icon' /> 
             </div> 
         )
     }

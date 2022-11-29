@@ -819,6 +819,15 @@ code {
   cursor: pointer; 
 }
 
+.no-workouts-to-display-profile {
+  margin-top: calc(var(--top-margin) + 25px); 
+  text-align: center;  
+}
+
+.no-workouts-icon { 
+  font-size: 1.75em; 
+}
+
 /* profile end */ 
 
 /* users page start */
