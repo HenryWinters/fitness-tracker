@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import loginService from '../services/login'
 import userService from '../services/users'
 import workoutService from '../services/workouts'
+import logo from '../images/logo.png'
 
 const Login = ({ setUser, setNotification }) => {
     const [username, setUsername] = useState('')
@@ -42,6 +43,7 @@ const Login = ({ setUser, setNotification }) => {
 
     return (
         <div className='login-container'>
+            <img src={logo} alt='liftpad log' className='logo' />
             <form onSubmit={handleLogin}> 
                 <div> 
                     <p>Username</p>

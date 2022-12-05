@@ -1,9 +1,9 @@
 :root {
-  --color-1: #373f51; 
-  --color-2: #EFCB68; 
-  --color-3: #E1EFE6; 
-  --color-4: #AEB7B3;
-  --color-5: #FF715B; 
+  --color-1: #4E598C; 
+  --color-2: #FCAF58; 
+  --color-3: #FFFFFF; 
+  --color-4: #c6c6c6;
+  --color-5: #FF8C42; 
   --border-color: rgb(230, 230, 230);
   --box-shadow-color: rgba(0, 0, 0, 0.24);
   --background-white: #F7F9FB; 
@@ -173,6 +173,10 @@ code {
 
 #login-link > p {
   margin-left: 5px;
+}
+
+.logo {
+  width: 250px; 
 }
 
 /* register page end */ 
