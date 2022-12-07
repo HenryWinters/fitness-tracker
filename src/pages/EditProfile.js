@@ -52,7 +52,11 @@ const EditProfile = ({ user, setNotification }) => {
             }, 10000)
         }
     } 
-      
+
+    const textAreaAdjust = (event) => {
+        event.target.style.height = 'inherit'
+        event.target.style.height = (event.target.scrollHeight)+'px'
+    } 
 
     return (
         <div className='register-form-container'> 
@@ -82,16 +86,17 @@ const EditProfile = ({ user, setNotification }) => {
                         placeholder='Input your city'
                     />
                 </div> 
-                <div className='register-input-container'> 
-                    <label>Bio</label>
-                    <input
-                        type='text'
+                <div className='register-input-container'>
+                    <label>Bio</label>  
+                    <textarea
                         value={bio}
                         name='New bio'
+                        onKeyDown={textAreaAdjust}
+                        style={{'overflow':'hidden'}}
                         onChange={({target}) => setBio(target.value)}
                         placeholder='Input your bio'
                     />
-                </div> 
+                </div>  
                 <div id='color-selector-container'> 
                     <label>Select color</label>
                     <SliderPicker 

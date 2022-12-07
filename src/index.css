@@ -4,6 +4,7 @@
   --color-3: #FFFFFF; 
   --color-4: #c6c6c6;
   --color-5: #FF8C42; 
+  --link-color: rgb(77, 193, 255); 
   --border-color: rgb(230, 230, 230);
   --box-shadow-color: rgba(0, 0, 0, 0.24);
   --background-white: #F7F9FB; 
@@ -11,11 +12,15 @@
   --bottom-margin: 66px; 
 }
 
+*:not(i) {
+  font-family: 'Oxygen', sans-serif;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif;*/
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 62.5%;
@@ -26,6 +31,12 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+button {
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  appearance: none; 
 }
 
 .website-container {
@@ -72,6 +83,7 @@ code {
   flex-direction: column; 
   justify-content: center; 
   align-items: center; 
+  font-size: 1.25em; 
 }
 
 .login-input {
@@ -79,7 +91,7 @@ code {
 }
 
 #login-button {
-  margin-top: 10px; 
+  margin-top: 20px; 
   background-color: var(--background-white); 
   color: var(--color-1);
   border: 1px solid var(--border-color);
@@ -93,10 +105,11 @@ code {
 }
 
 .register-button {
-  margin-top: 10px; 
+  margin-top: 20px; 
   border: 0; 
   padding: 0;
-  background-color: inherit
+  background-color: inherit;
+  color: var(--color-1); 
 }
 
 .register-button:hover {
@@ -128,6 +141,12 @@ code {
 
 .register-input-container > input {
   border: 1px solid var(--border-color);
+}
+
+.register-input-container > textarea { 
+  border: 1px solid var(--border-color);
+  width: 147px; 
+  word-wrap: break-word; 
 }
 
 #color-selector-container {
@@ -190,7 +209,7 @@ code {
   height: 55px; 
   display: flex; 
   align-items: center; 
-  font-size: 0.75em; 
+  font-size: 1em; 
   background-color: var(--color-3);
   color: var(--color-1);
   border-bottom: 1px solid var(--border-color);
@@ -258,6 +277,7 @@ code {
   background-color: var(--color-3);
   border-top: 1px solid var(--border-color);
   box-shadow: var(--box-shadow-color) 0px 1px 4px;
+  font-size: 1.25em; 
 }
 
 .bottom-nav-link {
@@ -361,6 +381,7 @@ code {
   background-color: var(--color-3);
   border: 1px solid var(--border-color);
   box-shadow: var(--box-shadow-color) 0px 1px 4px;
+  font-size: 1.25em; 
 }
 
 .profile-title {
@@ -469,10 +490,11 @@ code {
   display: flex; 
   flex-direction: column; 
   align-items: center; 
+  color: var(--color-1);
 }
 
 .view-button > p {
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
 }
 
 .view-button:hover {
@@ -487,6 +509,7 @@ code {
   display: flex; 
   align-items: center; 
   margin-right: 8px;  
+  color: var(--color-1); 
 }
 
 .fist-bump:hover { 
@@ -497,7 +520,7 @@ code {
   border: 0; 
   padding: 0;
   font-size: 1.25em; 
-  background-color: inherit
+  background-color: inherit;
 }
 
 .fist-bump > button:hover { 
@@ -556,6 +579,7 @@ code {
   background-color: inherit; 
   display: flex; 
   align-items: center; 
+  color: var(--color-1);
 }
 
 .delete-workout-button:hover {
@@ -633,6 +657,7 @@ code {
   border: 0; 
   padding: 0; 
   background-color: inherit; 
+  color: var(--color-1);
 }
 
 .workout-form-button:hover {
@@ -646,14 +671,14 @@ code {
 
 #workout-clear-button {
   position: absolute; 
-  top: calc(var(--top-margin) + 25px); 
-  left: 15px; 
+  top: calc(var(--top-margin) + 15px); 
+  left: 25px; 
 }
 
 #workout-save-button {
   position: absolute; 
-  top: calc(var(--top-margin) + 25px);
-  right: 15px; 
+  top: calc(var(--top-margin) + 15px);
+  right: 25px; 
 }
 
 @media only screen and (max-width: 700px) {
@@ -673,7 +698,7 @@ code {
   right: 25px; 
   top: calc(var(--top-margin) + 10px); 
   text-decoration: none; 
-  color: inherit; 
+  color: var(--color-1); 
 }
 
 .edit-profile-link:hover { 
@@ -708,7 +733,7 @@ code {
 .profile-follow-button, .profile-unfollow-button { 
   border: 1px solid var(--border-color);
   border-radius: 25px; 
-  padding: 5px 10px 5px 10px 
+  padding: 5px 10px 5px 10px;
 }
 
 .profile-unfollow-button {
@@ -746,6 +771,8 @@ code {
   border: 0; 
   padding: 0; 
   background-color: inherit; 
+  color: var(--color-1);
+  font-size: 1.25em; 
 }
 
 .follow-container > button:hover { 
@@ -758,6 +785,7 @@ code {
   justify-content: space-evenly; 
   align-items: center; 
   margin-top: 20px; 
+  font-size: 1.25em; 
 }
 
 .profile-stats-container > div {
@@ -779,7 +807,8 @@ code {
   justify-content: center; 
   align-items: center; 
   text-decoration: none; 
-  color: black; 
+  color: var(--color-1);
+  font-size: 1.25em; 
 }
 
 .profile-workouts-link:hover { 
@@ -842,6 +871,7 @@ code {
   flex-direction: column; 
   align-items: center; 
   justify-content: center; 
+  font-size: 1em;
 }
 
 .search-container {
@@ -868,7 +898,7 @@ code {
 }
 
 .user-on-users-list > button {
-  width: 65px; 
+  width: 70px; 
   height: 20px; 
   justify-self: center; 
   align-self: center;  
@@ -914,3 +944,26 @@ code {
 
 
 /* edit profile end */ 
+
+/* spinner start */
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  margin-top: 10px; 
+  width: 30px; 
+  height: 30px; 
+  border: 5px solid var(--border-color);
+  border-top: 5px solid black; 
+  border-radius: 50%; 
+  animation: spinner 1.5s linear infinite; 
+}
+
+/* spinner end */ 

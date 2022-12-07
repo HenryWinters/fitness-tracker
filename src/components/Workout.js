@@ -32,7 +32,7 @@ const Workout = ({ workout, user, setWorkouts, following, setFollowing, setNotif
     let likeColor = {}
     liked
     ? likeColor = { color: 'var(--color-5)' }
-    : likeColor = { color: 'black' }
+    : likeColor = { color: 'var(--color-1' }
 
     const workoutColor = { backgroundColor: `${workout.user[0].color}` }
     

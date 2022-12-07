@@ -3,15 +3,18 @@ import { useNavigate } from 'react-router-dom'
 import loginService from '../services/login'
 import userService from '../services/users'
 import workoutService from '../services/workouts'
+import Spinner from '../components/Spinner'
 import logo from '../images/logo.png'
 
 const Login = ({ setUser, setNotification }) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
     const navigate = useNavigate()
 
     const handleLogin = async (event) => {
         event.preventDefault() 
+        setIsLoading(true)
         try {
             const user = await loginService.login({
                 username, password
@@ -28,12 +31,14 @@ const Login = ({ setUser, setNotification }) => {
             setTimeout(() => {
                 setNotification({ message: null, type: null })
             }, 5000)
+            setIsLoading(false)
             navigate('/home')
         } catch (exception) {
             setNotification({ message: exception.response.data.error, type: 'error' })
             setTimeout(() => {
                 setNotification({ message: null, type: null })
             }, 5000)
+            setIsLoading(false)
         }
     }
 
@@ -67,8 +72,9 @@ const Login = ({ setUser, setNotification }) => {
                         onChange={({ target }) => setPassword(target.value)}
                     /> 
                 </div> 
-                <button type='submit' id='login-button'>Login</button>
+                <button type='submit' id='login-button' disabled={isLoading}>Login</button>
             </form> 
+            {isLoading ? <Spinner /> : <></>} 
             <button className='register-button' onClick={handleRegisterClick}>New? Click here to register</button> 
         </div> 
     )
