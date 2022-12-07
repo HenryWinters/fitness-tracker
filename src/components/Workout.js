@@ -91,7 +91,7 @@ const Workout = ({ workout, user, setWorkouts, following, setFollowing, setNotif
                             <FontAwesomeIcon className='profile-picture' style={workoutColor} icon={faDumbbell} />
                             <h3>{workout.user[0].name}</h3>
                         </NavLink>
-                        <p>{format(date, "PPPP 'at' p")}</p> 
+                        <p className='workout-date'>{format(date, "PPPP 'at' p")}</p> 
                     </div> 
                     <h3>{workout.workoutTitle}</h3> 
                     <p>{workout.workoutNote}</p> 
