@@ -1,7 +1,7 @@
-# [Liftpad] (https://liftpad.onrender.com)
+# [Liftpad](https://liftpad.onrender.com)
 
-[Website Link] (https://liftpad.onrender.com)
-[Link to backend repository] (https://github.com/HenryWinters/fitness-tracker-backend)
+[Website Link](https://liftpad.onrender.com)
+[Link to backend repository](https://github.com/HenryWinters/fitness-tracker-backend)
 
 ## About the App 
 
