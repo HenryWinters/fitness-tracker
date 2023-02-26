@@ -21,9 +21,11 @@ The app has an intuitive mobile-first design, designed to give users the ability
 It's equipped with a homepage feed to view network's workouts, an individual workout feed, profile page, stats summary, exerice logger, and more.
 
 ## Screenshots
-<img alt='Screenshot of Liftpad log in page' src='src/images/liftpad.onrender.com_(iPhone 6_7_8 Plus).png' width=25% />
-<img alt='Screenshot of home feed on Iphone' src='src/images/liftpad.onrender.com_home(iPhone%206_7_8%20Plus).png' width=25%) />
-<img alt='Screenshot of user profile page' src='src/images/liftpad.onrender.com_(iPhone 6_7_8 Plus) (1).png' width=25% />
+<p float='left'>
+    <img alt='Screenshot of Liftpad log in page' src='src/images/liftpad.onrender.com_(iPhone 6_7_8 Plus).png' width=25% />
+    <img alt='Screenshot of home feed on Iphone' src='src/images/liftpad.onrender.com_home(iPhone%206_7_8%20Plus).png' width=25%) />
+    <img alt='Screenshot of user profile page' src='src/images/liftpad.onrender.com_(iPhone 6_7_8 Plus) (1).png' width=25% />
+</p>
 
 ## Technologies Used
 
