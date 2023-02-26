@@ -24,7 +24,7 @@ It's equipped with a homepage feed to view network's workouts, an individual wor
 <p float='left'>
     <img alt='Screenshot of Liftpad log in page' src='src/images/liftpad.onrender.com_(iPhone 6_7_8 Plus).png' width=25% />
     <img alt='Screenshot of home feed on Iphone' src='src/images/liftpad.onrender.com_home(iPhone%206_7_8%20Plus).png' width=25%) />
-    <img alt='Screenshot of user profile page' src='src/images/liftpad.onrender.com_(iPhone 6_7_8 Plus) (1).png' width=25% />
+    <img alt='Screenshot of user profile page' src='src/images/liftpad.onrender.com_profile_hlwinters(iPhone 6_7_8 Plus).png' width=25% />
 </p>
 
 ## Technologies Used
@@ -34,7 +34,7 @@ Built with React, Node.js, Express, and MongoDB
 * React Router for routing 
 * Axois for REST API requests 
 * Encrypted password storage using bcrypt
-* Password requirements authentication using regex
+* Password strength requirements with regex
 * Token-based user authentication 
 * Local storage for user information and workout progress - this was an important update so that users could close their phone, leave the app, close their phone,etc. during their workout without losing their tracking progress
 * Inifite scroll to render workouts and users lists as user scrolls - with multiple lists that can grow quickly (users and workouts), I needed to add functionality that would limit the amount rendering to the page at once to improve app performance. I added infinite scroll to these lists to render workouts and users list as the user scrolls, instead of all at once. 
